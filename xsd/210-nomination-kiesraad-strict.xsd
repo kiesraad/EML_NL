@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- EML 210 Schema - Nomination -->
+<xs:schema xmlns="urn:oasis:names:tc:evs:schema:eml"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:kr="http://www.kiesraad.nl/extensions"
+	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+	xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" targetNamespace="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0" id="eml-210">
+	<xs:include schemaLocation="kiesraad-eml-restrictions.xsd"/>
+	<xs:import namespace="http://www.kiesraad.nl/extensions" schemaLocation="kiesraad-eml-extensions.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="external/xmldsig-core-schema.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" schemaLocation="xNL-kiesraad-strict.xsd"/>
+	<xs:complexType name="EMLstructure210">
+		<xs:annotation>
+			<xs:documentation>only TransactionId and IssueDate needed, CanoncalizationMethod added</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="EMLstructureKR">
+				<xs:sequence>
+					<xs:element ref="TransactionId"/>
+					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR" minOccurs="0"/>
+					<xs:element name="IssueDate" type="DateType"/>
+					<xs:choice minOccurs="1" maxOccurs="2">
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="kr:CreationDateTime"/>
+						<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="Id" type="MessageTypeType" use="required" fixed="210"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ElectionIdentifierStructure210">
+		<xs:annotation>
+			<xs:documentation>mandatory ElectionCategory, and some additional Elements</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ElectionIdentifierStructureKR">
+				<xs:sequence>
+					<xs:element name="ElectionName" type="xs:token" minOccurs="0"/>
+					<xs:element name="ElectionCategory" type="kr:ElectionCategoryType"/>
+					<xs:choice minOccurs="2" maxOccurs="4">
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="kr:ElectionSubcategory" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDomain" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDate"/>
+						<xs:element ref="kr:NominationDate"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ContestIdentifierStructure210">
+		<xs:annotation>
+			<xs:documentation>mandatory ContestName</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ContestIdentifierStructureKR">
+				<xs:sequence>
+					<xs:element name="ContestName" type="xs:token"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CandidateStructure210">
+		<xs:annotation>
+			<xs:documentation>only CandidateIdentifier, CandidateFullName, DateOfBirth, Gender,  QualifyingAddress, and Agent allowed</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="CandidateStructureKR">
+				<xs:sequence>
+					<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructure210"/>
+					<xs:element name="CandidateFullName" type="PersonNameStructure"/>
+					<xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
+					<xs:element ref="Gender"/>
+					<xs:element name="QualifyingAddress" type="QualifyingAddressStructureKR"/>
+					<xs:element name="Contact" type="ContactDetailsStructureKR" minOccurs="0"/>
+					<xs:element name="Agent" type="AgentStructureKR" minOccurs="0"/>
+					<xs:element ref="kr:DateOfBirthAnnex" minOccurs="0"/>
+					<xs:element ref="kr:NationalIdentificationNumber" minOccurs="0"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CandidateIdentifierStructure210">
+		<xs:annotation>
+			<xs:documentation>only empty content allowed, Id Attribute mandatory </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="CandidateIdentifierStructureKR">
+				<xs:attribute name="Id" type="kr:CandidateIdType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AffiliationStructure210">
+		<xs:annotation>
+			<xs:documentation>Type restricted to 3 defined values</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="AffiliationStructureKR">
+				<xs:sequence>
+					<xs:element name="AffiliationIdentifier" type="AffiliationIdentifierStructure210"/>
+					<xs:element name="Type" type="kr:AffiliationType"/>
+					<xs:choice>
+						<xs:element ref="kr:ListData"/>
+						<xs:sequence>
+							<xs:any namespace="http://www.kiesraad.nl/reportgenerator" maxOccurs="unbounded"/>
+							<xs:element ref="kr:ListData"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AffiliationIdentifierStructure210">
+		<xs:annotation>
+			<xs:documentation>Id prohibited</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="AffiliationIdentifierStructureKR">
+				<xs:sequence>
+					<xs:element name="RegisteredName" type="xs:token"/>
+				</xs:sequence>
+				<xs:attribute name="Id" type="kr:AffiliationIdType" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProposerStructureRestricted">
+		<xs:annotation>
+			<xs:documentation>due to the anonymous definition of the original Id, a removal by restriction was necessary</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="PersonNameStructure"/>
+			<xs:element name="Contact" type="ContactDetailsStructureKR"/>
+			<xs:element name="JobTitle">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="inleveraar"/>
+						<xs:enumeration value="plaatsvervanger van de inleveraar"/>
+						<xs:enumeration value="gemachtigde voor het aangaan van lijstencombinaties"/>
+						<xs:enumeration value="plaatsvervanger voor het aangaan van lijstencombinaties"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProposerStructureKR">
+		<xs:annotation>
+			<xs:documentation>due to the anonymous definition of the original Id, a repeated definition by extension was necessary</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ProposerStructureRestricted">
+				<xs:sequence>
+					<xs:element name="Id" type="xs:token" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>mandatory if it is a deputy</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="kr:LivingAddress" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure210">
+					<xs:sequence>
+						<xs:element ref="Nomination"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Nomination">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ElectionIdentifier" type="ElectionIdentifierStructure210"/>
+				<xs:element name="ContestIdentifier" type="ContestIdentifierStructure210"/>
+				<xs:element name="Affiliation">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="AffiliationStructure210">
+								<xs:sequence>
+									<xs:element name="Candidate" type="CandidateStructure210" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+					<xs:unique name="CandidateId">
+						<xs:selector xpath="./*/*"/>
+						<xs:field xpath="@Id"/>
+					</xs:unique>
+				</xs:element>
+				<xs:element name="Nominate">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Proposer" type="ProposerStructureKR" minOccurs="2" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EML extensions which are specific to Dutch elections -->
+<xs:schema xmlns="http://www.kiesraad.nl/extensions"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.kiesraad.nl/extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:group name="ElectionIdentifierExtensionGroup">
+		<xs:annotation>
+			<xs:documentation>determines the order in which ElectionSubcategory, ElectionDomain, and ElectionDate have to be used</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ElectionSubcategory" minOccurs="0"/>
+			<xs:element ref="ElectionDomain"/>
+			<xs:element ref="ElectionDate"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="ElectionDomain">
+		<xs:annotation>
+			<xs:documentation>The (top level) region where the election takes place. Optional. Only needed if the ElectionDomain is part of the election name, e.g. election of the council of a municipality or province. Not needed e.g. for Tweede Kamer or European Parliament.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="Id">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="\d{4}|([12]?[0-9])"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ElectionDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>election date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ElectionSubcategory" type="ElectionSubcategoryType">
+		<xs:annotation>
+			<xs:documentation>defines a subcategory to the ElectionCategory: PS1 (one electoral district), PS2 (more than one electoral district), AB1 (less than 19 seats), AB2 (19 seats or more), GR1 (less than 19 seats), GR2 (19 seats or more), TK, EK, BC, GC, and EP (not sub-categorized)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="ElectionSubcategoryType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="PS1">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Provinciale Staaten, one electoral district</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PS2">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Provinciale Staaten, more than one electoral district</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AB1">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Water council elections, less than 19 seats</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AB2">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Water council elections, 19 seats or more</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GR1">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">gemeenteraad, less than 19 seats</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GR2">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">gemeenteraad, 19 seats or more</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BC">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">bestuurscommissie (Amsterdam)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GC">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">gebiedscommissie (Rotterdam)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ER1">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">eilandsraad, has always less than 19 seats</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TK"/>
+			<xs:enumeration value="EK"/>
+			<xs:enumeration value="EP"/>
+			<xs:enumeration value="NR"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="LR"/>
+			<xs:enumeration value="IR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="NominationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>date of the proposition of the candidate list (filing of the candidate list at the electoral committee)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CreationDateTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>date and time of the last modification of the data which was used to create the EML file</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CreatedByAuthority">
+		<xs:annotation>
+			<xs:documentation>Instance which created a data set on behalf of another (only if different!)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="Id" use="required">
+				<xs:simpleType>
+					<xs:restriction base="XSBType">
+						<xs:minLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Contest">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:token">
+					<xs:attribute name="Id" type="ContestIdType" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Contests">
+		<xs:annotation>
+			<xs:documentation>Information in addition to the eml:ContestIdentifier. For submission to multiple contests (provinces for EK elections, electoral districts for PS, TK and EP).</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Contest" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="PublicationLanguageType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="nl"/>
+			<xs:enumeration value="fy"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="ListData">
+		<xs:annotation>
+			<xs:documentation>additional OSV data for the candidate list</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Contests" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="PublishGender" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>denotes if the gender information shall be displayed in all documents</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PublicationLanguage" type="PublicationLanguageType">
+				<xs:annotation>
+					<xs:documentation>denotes if the language for publication, especially of the female gender: nl -> v, fy -> f</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BelongsToSet" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>list set number if there are several sets within a list group</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BelongsToCombination">
+				<xs:annotation>
+					<xs:documentation>list combination letter set by program 3 (only 230b and 230c)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:length value="1"/>
+						<xs:pattern value="[a-z|A-Z]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="XSBType">
+		<xs:annotation>
+			<xs:documentation>restricts the basic type to the allowed values for the authority id (CSB, HSB, empty string (meaning PSB), or SB, followed by number)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:pattern value="CSB|((HSB|SB)\d+)|(\d{4})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ElectionCategoryType">
+		<xs:annotation>
+			<xs:documentation>restricts the basic type to the allowed values for the election category (election type abreviation)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="EK"/>
+			<xs:enumeration value="TK"/>
+			<xs:enumeration value="EP"/>
+			<xs:enumeration value="PS"/>
+			<xs:enumeration value="AB"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="BC"/>
+			<xs:enumeration value="GC"/>
+			<xs:enumeration value="ER"/>
+			<xs:enumeration value="NR"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="LR"/>
+			<xs:enumeration value="IR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ElectionIdType">
+		<xs:annotation>
+			<xs:documentation>restricts the basic type to the allowed values for the election Id (election category + year)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:pattern value="(EP|EK|TK|GR|BC|GC|ER|PS|AB|NR|PR|LR|IR)2\d\d\d(\d\d\d\d)?(_[\w_-]*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CandidateIdType">
+		<xs:annotation>
+			<xs:documentation>restricts the basic type to the allowed values for the candidate Id (a positive decimal number)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:pattern value="[1-9]\d*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AffiliationType">
+		<xs:annotation>
+			<xs:documentation>restricts the basic type to the allowed values for the affiliation type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="lijstengroep"/>
+			<xs:enumeration value="stel gelijkluidende lijsten"/>
+			<xs:enumeration value="op zichzelf staande lijst"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AffiliationIdType">
+		<xs:annotation>
+			<xs:documentation>restricts the basic type to the allowed values for the affiliation Id (a positive decimal number and the standard 26 lower case letters - for list combinations)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:pattern value="[1-9]\d*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ContestIdType">
+		<xs:annotation>
+			<xs:documentation>restricts the basic type to the allowed values for the contest identifier Id (a positive decimal number, a roman numeral, "geen" or "alle")</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:pattern value="[1-9]\d*|geen|alle|M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="NumberOfSeats" type="xs:positiveInteger"/>
+	<xs:element name="PreferenceThreshold" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>Electoral quota in % a candidate will be prefered</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RegisteredParties">
+		<xs:annotation>
+			<xs:documentation>All registered names of political groupings</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegisteredParty" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegisteredParty">
+		<xs:annotation>
+			<xs:documentation>Registered political grouping</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegisteredAppellation"/>
+				<xs:element ref="RegisteredBy" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegisteredAppellation" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Registered appellation of the political grouping</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RegisteredBy" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Person, who registered this appellation</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ElectionTree">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Region" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Region">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegionName"/>
+				<xs:element ref="Committee" minOccurs="0" maxOccurs="3"/>
+			</xs:sequence>
+			<xs:attribute name="RegionNumber" type="xs:short"/>
+			<xs:attribute name="RegionCategory" type="RegionCategoryType" use="required"/>
+			<xs:attribute name="RomanNumerals" type="xs:boolean" default="false"/>
+			<xs:attribute name="FrysianExportAllowed" type="xs:boolean" default="false"/>
+			<xs:attribute name="SuperiorRegionNumber" type="xs:short"/>
+			<xs:attribute name="SuperiorRegionCategory" type="RegionCategoryType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegionName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Region name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Committee">
+		<xs:annotation>
+			<xs:documentation>Committee (e.g. central electoral committee)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="CommitteeCategory" type="CommitteeCategoryType" use="required"/>
+			<xs:attribute name="CommitteeName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>If not set, use region name</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AcceptCentralSubmissions" type="xs:boolean"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="RegionCategoryType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DEELGEMEENTE"/>
+			<xs:enumeration value="GEMEENTE"/>
+			<xs:enumeration value="KIESKRING"/>
+			<xs:enumeration value="PROVINCIE"/>
+			<xs:enumeration value="PROVINCIAAL_KIESKRING"/>
+			<xs:enumeration value="PROVINCIAAL_STEMBUREAU"/>
+			<xs:enumeration value="STAAT"/>
+			<xs:enumeration value="STEMBUREAU"/>
+			<xs:enumeration value="WATERSCHAP"/>
+			<xs:enumeration value="WATERSCHAP_KIESKRING"/>
+			<xs:enumeration value="WATERSCHAP_GEMEENTE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommitteeCategoryType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CSB"/>
+			<xs:enumeration value="HSB"/>
+			<xs:enumeration value="PROV_SB"/>
+			<xs:enumeration value="PSB"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="DateOfBirthAnnex">
+		<xs:annotation>
+			<xs:documentation>Use this instead of DateOfBirth when day, month and/or year is unknown, e.g. XX-05-1976, XX-XX-1964, XX-XX-XXXX.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="(XX-(XX|\d[1-9]|[1-9]0)-([1-9]\d{3}|\d[1-9]\d\d|\d\d[1-9]\d|\d{3}[1-9])|XX-XX-XXXX)"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NationalIdentificationNumber" type="xs:token">
+		<xs:annotation>
+			<xs:documentation>Number identifying a person in the National administration. For the Netherlands, this is the Burgerservicenummer (BSN).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LivingAddressType">
+		<xs:sequence>
+			<xs:element name="LocalityName" type="xs:string"/>
+			<xs:element name="CountryNameCode" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LivingAddress" type="LivingAddressType"/>
+</xs:schema>

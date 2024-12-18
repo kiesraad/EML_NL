@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EML restrictions which are specific to Dutch elections -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:oasis:names:tc:evs:schema:eml"
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:kr="http://www.kiesraad.nl/extensions"
+	xmlns:rg="http://www.kiesraad.nl/reportgenerator"
+	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+	xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" targetNamespace="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="emlcore-kiesraad-strict.xsd"/>
+	<xs:import namespace="http://www.kiesraad.nl/extensions" schemaLocation="kiesraad-eml-extensions.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="external/xmldsig-core-schema.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" schemaLocation="xNL-kiesraad-strict.xsd"/>
+	<xs:simpleType name="NameShortCodeType">
+		<xs:annotation>
+			<xs:documentation>restricts the basic type to the allowed values for the short code, which are basically letters, followed by a number if necessary; the maximum length is restricted to 15</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ShortCodeType">
+			<xs:maxLength value="15"/>
+			<xs:minLength value="1"/>
+			<xs:pattern value="\p{L}*\d{0,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EMLstructureKR">
+		<xs:annotation>
+			<xs:documentation>only TransactionId, ManagingAuthority, and IssueDate needed, CanoncalizationMethod added</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="EMLstructure">
+				<xs:sequence>
+					<xs:element ref="TransactionId"/>
+					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR" minOccurs="0"/>
+					<xs:element name="IssueDate" type="DateType" minOccurs="0"/>
+					<xs:choice minOccurs="0" maxOccurs="2">
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary, see also OSV-1793</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="kr:CreationDateTime" minOccurs="0"/>
+						<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="Id" type="MessageTypeType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ManagingAuthorityStructureKR">
+		<xs:annotation>
+			<xs:documentation>only AuthorityIdentifier and AuthorityAddress allowed, as well as the new Element CreatedByAuthority</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ManagingAuthorityStructure">
+				<xs:sequence>
+					<xs:element name="AuthorityIdentifier" type="AuthorityIdentifierStructureKR"/>
+					<xs:element name="AuthorityAddress" type="AuthorityAddressStructure"/>
+					<xs:element ref="kr:CreatedByAuthority" minOccurs="0"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AuthorityIdentifierStructureKR">
+		<xs:annotation>
+			<xs:documentation>Id Attribute mandatory, content restricted</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="AuthorityIdentifierStructure">
+				<xs:attribute name="Id" type="kr:XSBType" use="required"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ElectionIdentifierStructureKR">
+		<xs:annotation>
+			<xs:documentation>mandatory ElectionCategory, and some additional Elements</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ElectionIdentifierStructure">
+				<xs:sequence>
+					<xs:element name="ElectionName" type="xs:token" minOccurs="0"/>
+					<xs:element name="ElectionCategory" type="kr:ElectionCategoryType"/>
+					<xs:choice minOccurs="1" maxOccurs="4">
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="kr:ElectionSubcategory" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDomain" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDate"/>
+						<xs:element ref="kr:NominationDate" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="Id" type="kr:ElectionIdType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ContestIdentifierStructureKR">
+		<xs:annotation>
+			<xs:documentation>Id Attribute mandatory, content restricted</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ContestIdentifierStructure">
+				<xs:sequence>
+					<xs:element name="ContestName" type="xs:token" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="Id" type="kr:ContestIdType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CandidateStructureKR">
+		<xs:annotation>
+			<xs:documentation>only CandidateIdentifier, CandidateFullName, Gender,  QualifyingAddress, Contact, Agent, kr:DateOfBirthAnnex and kr:NationalIdentificationNumber allowed; re-defined without inheritance because of inflexible rules of restriction</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructureKR"/>
+			<xs:element name="CandidateFullName" type="PersonNameStructure" minOccurs="0"/>
+			<xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
+			<xs:element ref="Gender" minOccurs="0"/>
+			<xs:element name="QualifyingAddress" type="GenericQualifyingAddressStructureKR" minOccurs="0"/>
+			<xs:element name="Contact" type="ContactDetailsStructureKR" minOccurs="0"/>
+			<xs:element name="Agent" type="AgentStructureKR" minOccurs="0"/>
+			<xs:element ref="kr:DateOfBirthAnnex" minOccurs="0"/>
+			<xs:element ref="kr:NationalIdentificationNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CandidateIdentifierStructureKR">
+		<xs:annotation>
+			<xs:documentation>only CandidateName and ShortCode (Element or Attribute) allowed, Id Attribute mandatory </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="CandidateIdentifierStructure">
+				<xs:sequence>
+					<xs:element name="ShortCode" type="NameShortCodeType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="ShortCode" type="NameShortCodeType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AddressStructureRestrictedKR">
+		<xs:annotation>
+			<xs:documentation>due to deficiencies in XML schema, everyting except attributes is removed from the original type</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="xal:AddressDetails"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GenericQualifyingAddressStructureKR">
+		<xs:annotation>
+			<xs:documentation>due to deficiencies in XML schema, the result type is built by extension</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AddressStructureRestrictedKR">
+				<xs:group ref="xal:GenericAddressGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="QualifyingAddressStructureKR">
+		<xs:annotation>
+			<xs:documentation>full address</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="GenericQualifyingAddressStructureKR">
+				<xs:group ref="xal:AddressGroup"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MinimalQualifyingAddressStructureKR">
+		<xs:annotation>
+			<xs:documentation>minimal address</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="GenericQualifyingAddressStructureKR">
+				<xs:group ref="xal:MinimalAddressGroup"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GenericMailingAddressStructureKR">
+		<xs:annotation>
+			<xs:documentation>due to deficiencies in XML schema, the result type is built by extension</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AddressStructureRestrictedKR">
+				<xs:group ref="xal:GenericAddressGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MailingAddressStructureKR">
+		<xs:annotation>
+			<xs:documentation>full address</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="GenericMailingAddressStructureKR">
+				<xs:group ref="xal:GenericAddressGroup"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AffiliationStructureKR">
+		<xs:annotation>
+			<xs:documentation>only mandatory elements allowed, Type restricted to 3 defined values</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="AffiliationStructure">
+				<xs:sequence>
+					<xs:element name="AffiliationIdentifier" type="AffiliationIdentifierStructureKR"/>
+					<xs:element name="Type" type="kr:AffiliationType"/>
+					<xs:choice>
+						<xs:element ref="kr:ListData"/>
+						<xs:sequence>
+							<xs:any namespace="http://www.kiesraad.nl/reportgenerator" maxOccurs="unbounded"/>
+							<xs:element ref="kr:ListData"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AffiliationIdentifierStructureKR">
+		<xs:annotation>
+			<xs:documentation>only attribute optionally used is Id</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="AffiliationIdentifierStructure">
+				<xs:sequence>
+					<xs:element name="RegisteredName" type="xs:token"/>
+				</xs:sequence>
+				<xs:attribute name="Id" type="kr:AffiliationIdType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ContactDetailsStructureKR">
+		<xs:annotation>
+			<xs:documentation>only MailingAddress allowed - and mandatory</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MailingAddress" type="GenericMailingAddressStructureKR"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AgentStructureKR">
+		<xs:annotation>
+			<xs:documentation>only AgentIdentifier, Contact and ##other allowed - and mandatory</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="AgentIdentifier"/>
+			<xs:element name="Contact" type="ContactDetailsStructureKR" minOccurs="0"/>
+			<xs:element ref="kr:LivingAddress"/>
+		</xs:sequence>
+		<xs:attribute name="Role" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:enumeration value="H10"/>
+					<xs:enumeration value="H10a"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ReportingUnitIdentifierStructureKR">
+		<xs:annotation>
+			<xs:documentation>Id Attribute mandatory, content restricted</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="ReportingUnitIdentifierStructure">
+				<xs:attribute name="Id" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:NMTOKEN">
+							<xs:pattern value="(HSB\d+)|((HSB\d+::)?\d{4})|(((HSB\d+::)?\d{4}::)?SB\d+)|(HSB\d+::SB\d+)"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

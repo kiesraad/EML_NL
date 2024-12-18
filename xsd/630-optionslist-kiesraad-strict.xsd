@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- EML 630 Schema - Options List -->
+<xs:schema xmlns="urn:oasis:names:tc:evs:schema:eml"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:kr="http://www.kiesraad.nl/extensions"
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" targetNamespace="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0" id="eml-630">
+	<xs:include schemaLocation="kiesraad-eml-restrictions.xsd"/>
+	<xs:import namespace="http://www.kiesraad.nl/extensions" schemaLocation="kiesraad-eml-extensions.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="external/xmldsig-core-schema.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
+	<xs:complexType name="EMLstructure630">
+		<xs:annotation>
+			<xs:documentation>only TransactionId and IssueDate needed, CanoncalizationMethod added</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="EMLstructureKR">
+				<xs:sequence>
+					<xs:element ref="TransactionId"/>
+					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR" minOccurs="0"/>
+					<xs:element name="IssueDate" type="DateType" minOccurs="0"/>
+					<xs:choice>
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element ref="kr:CreationDateTime"/>
+							<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="Id" use="required" fixed="630">
+					<xs:simpleType>
+						<xs:restriction base="MessageTypeType"/>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ElectionIdentifierStructure630">
+		<xs:annotation>
+			<xs:documentation>mandatory ElectionCategory, and some additional Elements</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ElectionIdentifierStructureKR">
+				<xs:sequence>
+					<xs:element name="ElectionName" type="xs:token"/>
+					<xs:element name="ElectionCategory" type="kr:ElectionCategoryType"/>
+					<xs:choice>
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:sequence>
+							<xs:element ref="kr:ElectionSubcategory"/>
+							<xs:element ref="kr:ElectionDomain" minOccurs="0"/>
+							<xs:element ref="kr:ElectionDate"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProposalStructure630">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="ProposalIdentifier" type="ProposalIdentifierStructure630"/>
+					<xs:element name="Options">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="ReferendumOptionIdentifier" type="ReferendumOptionIdentifierStructure630" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Its value contains an answer text to the referendum question.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProposalIdentifierStructure630">
+		<xs:sequence>
+			<xs:element name="ProposalName" type="xs:token">
+				<xs:annotation>
+					<xs:documentation>The question text of the referendum.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="DisplayIdOpt"/>
+		<xs:attribute name="ShortCode" type="ShortCodeType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ReferendumOptionIdentifierStructure630">
+		<xs:simpleContent>
+			<xs:extension base="xs:token">
+				<xs:attribute name="Id" type="xs:NMTOKEN" use="required"/>
+				<xs:attribute name="DisplayOrder" type="xs:positiveInteger" use="optional"/>
+				<xs:attribute name="ShortCode" type="ShortCodeType" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure630">
+					<xs:sequence>
+						<xs:element ref="OptionsList"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OptionsList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Election">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ElectionIdentifier" type="ElectionIdentifierStructure630"/>
+							<xs:element name="Proposal" type="ProposalStructure630"/>
+							<xs:choice>
+								<xs:annotation>
+									<xs:documentation>this choice is not logical but necessary</xs:documentation>
+								</xs:annotation>
+								<xs:sequence>
+									<xs:element ref="kr:ElectionTree"/>
+								</xs:sequence>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

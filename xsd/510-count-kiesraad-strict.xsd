@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- EML 510 Schema - Count -->
+<xs:schema xmlns="urn:oasis:names:tc:evs:schema:eml"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:kr="http://www.kiesraad.nl/extensions"
+	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+	xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" targetNamespace="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0" id="eml-210">
+	<xs:include schemaLocation="kiesraad-eml-restrictions.xsd"/>
+	<xs:import namespace="http://www.kiesraad.nl/extensions" schemaLocation="kiesraad-eml-extensions.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="external/xmldsig-core-schema.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" schemaLocation="xNL-kiesraad-strict.xsd"/>
+	<xs:complexType name="EMLstructure510">
+		<xs:annotation>
+			<xs:documentation>only TransactionId and IssueDate needed, CanoncalizationMethod added</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="EMLstructureKR">
+				<xs:sequence>
+					<xs:element ref="TransactionId"/>
+					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR"/>
+					<xs:choice minOccurs="1" maxOccurs="2">
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="kr:CreationDateTime"/>
+						<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="Id" use="required">
+					<xs:simpleType>
+						<xs:restriction base="MessageTypeType">
+							<xs:pattern value="510[a-dqrs]"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ElectionIdentifierStructure510">
+		<xs:annotation>
+			<xs:documentation>mandatory ElectionCategory, and some additional Elements</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ElectionIdentifierStructureKR">
+				<xs:sequence>
+					<xs:element name="ElectionName" type="xs:token" minOccurs="0"/>
+					<xs:element name="ElectionCategory" type="kr:ElectionCategoryType"/>
+					<xs:choice minOccurs="1" maxOccurs="3">
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="kr:ElectionSubcategory" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDomain" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDate"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AffiliationIdentifierStructure510">
+		<xs:annotation>
+			<xs:documentation>mandatory ElectionCategory, and some additional Elements</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="AffiliationIdentifierStructureKR">
+				<xs:sequence>
+					<xs:element name="RegisteredName" type="xs:token"/>
+				</xs:sequence>
+				<xs:attribute name="Id" type="kr:AffiliationIdType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CandidateStructure510">
+		<xs:annotation>
+			<xs:documentation>only CandidateIdentifier and Gender allowed</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="CandidateStructureKR">
+				<xs:sequence>
+					<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructureKR"/>
+					<xs:element name="CandidateFullName" type="PersonNameStructure" minOccurs="0"/>
+					<xs:element ref="Gender" minOccurs="0"/>
+					<xs:element name="QualifyingAddress" type="MinimalQualifyingAddressStructureKR" minOccurs="0"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CandidateIdentifierStructure510">
+		<xs:annotation>
+			<xs:documentation>only CandidateName and ShortCode (Element or Attribute) allowed, Id Attribute mandatory </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="CandidateIdentifierStructureKR">
+				<xs:sequence>
+					<xs:element name="ShortCode" type="NameShortCodeType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="ShortCode" type="ShortCodeType" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure510">
+					<xs:sequence>
+						<xs:element ref="Count"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Count">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EventIdentifier"/>
+				<xs:element name="Election">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ElectionIdentifier" type="ElectionIdentifierStructure510"/>
+							<xs:element name="Contests">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Contest" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ContestIdentifier" type="ContestIdentifierStructureKR"/>
+													<xs:choice>
+														<xs:sequence>
+															<xs:element name="TotalVotes">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:group ref="VoteGroup"/>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element ref="ReportingUnitVotes" minOccurs="0" maxOccurs="unbounded"/>
+														</xs:sequence>
+														<xs:element ref="ReportingUnitVotes"/>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReportingUnitVotes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ReportingUnitIdentifier" type="ReportingUnitIdentifierStructureKR"/>
+				<xs:group ref="VoteGroup"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="VoteGroup">
+		<xs:sequence>
+			<xs:element name="Selection" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="Candidate" type="CandidateStructure510"/>
+							<xs:element name="AffiliationIdentifier" type="AffiliationIdentifierStructure510"/>
+							<xs:element ref="ReferendumOptionIdentifier"/>
+						</xs:choice>
+						<xs:element name="ValidVotes" type="xs:nonNegativeInteger"/>
+					</xs:sequence>
+					<xs:attribute name="Value" type="VotingValueType" use="optional"/>
+					<xs:attribute name="Category" type="xs:token" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Cast" type="xs:nonNegativeInteger"/>
+			<xs:element name="TotalCounted" type="xs:nonNegativeInteger"/>
+			<xs:element name="RejectedVotes" minOccurs="2" maxOccurs="2">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:nonNegativeInteger">
+							<xs:attribute name="Reason" type="xs:token" use="optional"/>
+							<xs:attribute name="ReasonCode" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:token">
+										<xs:enumeration value="blanco"/>
+										<xs:enumeration value="ongeldig"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="VoteType" type="xs:token" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UncountedVotes" minOccurs="0" maxOccurs="14">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:nonNegativeInteger">
+							<xs:attribute name="Reason" type="xs:token" use="optional"/>
+							<xs:attribute name="ReasonCode" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:token">
+										<xs:enumeration value="geldige stempassen"/>
+										<xs:enumeration value="geldige volmachtbewijzen"/>
+										<xs:enumeration value="geldige kiezerspassen"/>
+										<xs:enumeration value="toegelaten kiezers"/>
+										<xs:enumeration value="meer getelde stembiljetten"/>
+										<xs:enumeration value="minder getelde stembiljetten"/>
+										<xs:enumeration value="meegenomen stembiljetten"/>
+										<xs:enumeration value="te weinig uitgereikte stembiljetten"/>
+										<xs:enumeration value="te veel uitgereikte stembiljetten"/>
+										<xs:enumeration value="geen briefstembiljetten"/>
+										<xs:enumeration value="te veel briefstembiljetten"/>
+										<xs:enumeration value="kwijtgeraakte stembiljetten"/>
+										<xs:enumeration value="geen verklaring"/>
+										<xs:enumeration value="andere verklaring"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="VoteType" type="xs:token" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+</xs:schema>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- EML 230 Schema - Candidate list -->
+<xs:schema xmlns="urn:oasis:names:tc:evs:schema:eml"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:kr="http://www.kiesraad.nl/extensions"
+	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+	xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" targetNamespace="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0" id="eml-210">
+	<xs:include schemaLocation="kiesraad-eml-restrictions.xsd"/>
+	<xs:import namespace="http://www.kiesraad.nl/extensions" schemaLocation="kiesraad-eml-extensions.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="external/xmldsig-core-schema.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" schemaLocation="xNL-kiesraad-strict.xsd"/>
+	<xs:complexType name="EMLstructure230">
+		<xs:annotation>
+			<xs:documentation>only TransactionId and IssueDate needed, CanoncalizationMethod added</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="EMLstructureKR">
+				<xs:sequence>
+					<xs:element ref="TransactionId"/>
+					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR"/>
+					<xs:element name="IssueDate" type="DateType"/>
+					<xs:choice minOccurs="1" maxOccurs="2">
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="kr:CreationDateTime"/>
+						<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="Id" use="required">
+					<xs:simpleType>
+						<xs:restriction base="MessageTypeType">
+							<xs:enumeration value="230b"/>
+							<xs:enumeration value="230c"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ElectionIdentifierStructure230">
+		<xs:annotation>
+			<xs:documentation>mandatory ElectionCategory, and some additional Elements</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ElectionIdentifierStructureKR">
+				<xs:sequence>
+					<xs:element name="ElectionName" type="xs:token" minOccurs="0"/>
+					<xs:element name="ElectionCategory" type="kr:ElectionCategoryType"/>
+					<xs:choice minOccurs="2" maxOccurs="4">
+						<xs:annotation>
+							<xs:documentation>this choice is not logical but necessary</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="kr:ElectionSubcategory" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDomain" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDate"/>
+						<xs:element ref="kr:NominationDate"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="EML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="EMLstructure230">
+					<xs:sequence>
+						<xs:element ref="CandidateList"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CandidateList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ListDate" type="DateType" minOccurs="0"/>
+				<xs:element name="Election">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ElectionIdentifier" type="ElectionIdentifierStructure230"/>
+							<xs:element name="Contest" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ContestIdentifier" type="ContestIdentifierStructureKR"/>
+										<xs:element name="Affiliation" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="AffiliationStructureKR">
+														<xs:sequence>
+															<xs:element name="Candidate" type="CandidateStructureKR" maxOccurs="unbounded"/>
+														</xs:sequence>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="ShortCodeKey">
+						<xs:selector xpath=".//*"/>
+						<xs:field xpath="@ShortCode"/>
+					</xs:unique>
+					<xs:keyref name="ShortCodeRef" refer="ShortCodeKey">
+						<xs:selector xpath=".//*"/>
+						<xs:field xpath="ShortCode"/>
+					</xs:keyref>
+				</xs:element>
+				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
