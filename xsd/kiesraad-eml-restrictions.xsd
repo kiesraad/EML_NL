@@ -44,6 +44,13 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="EMLstructureKRExt">
+		<xs:complexContent>
+			<xs:extension base="EMLstructureKR">
+				<xs:attribute ref="kr:SchemaVersion" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="ManagingAuthorityStructureKR">
 		<xs:annotation>
 			<xs:documentation>only AuthorityIdentifier and AuthorityAddress allowed, as well as the new Element CreatedByAuthority</xs:documentation>
