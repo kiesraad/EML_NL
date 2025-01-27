@@ -104,6 +104,16 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:simpleType name="GenderTypeKR">
+		<xs:annotation>
+			<xs:documentation>Restricts the base EML gender type to not allow 'unknown', replacing it with 'other'.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="male"/>
+			<xs:enumeration value="female"/>
+			<xs:enumeration value="other"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="CandidateStructureKR">
 		<xs:annotation>
 			<xs:documentation>only CandidateIdentifier, CandidateFullName, Gender,  QualifyingAddress, Contact, Agent, kr:DateOfBirthAnnex and kr:NationalIdentificationNumber allowed; re-defined without inheritance because of inflexible rules of restriction</xs:documentation>
@@ -112,7 +122,7 @@
 			<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructureKR"/>
 			<xs:element name="CandidateFullName" type="PersonNameStructure" minOccurs="0"/>
 			<xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
-			<xs:element ref="Gender" minOccurs="0"/>
+			<xs:element name="Gender" type="GenderTypeKR" minOccurs="0"/>
 			<xs:element name="QualifyingAddress" type="GenericQualifyingAddressStructureKR" minOccurs="0"/>
 			<xs:element name="Contact" type="ContactDetailsStructureKR" minOccurs="0"/>
 			<xs:element name="Agent" type="AgentStructureKR" minOccurs="0"/>
