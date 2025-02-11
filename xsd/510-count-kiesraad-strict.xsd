@@ -150,6 +150,7 @@
 				</xs:element>
 				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
+			<xs:attribute name="Phase" type="kr:CountPhaseType" use="optional" default="initial"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ReportingUnitVotes">
