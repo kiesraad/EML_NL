@@ -158,6 +158,7 @@
 				<xs:element name="ReportingUnitIdentifier" type="ReportingUnitIdentifierStructureKR"/>
 				<xs:group ref="VoteGroup"/>
 			</xs:sequence>
+			<xs:attribute name="Recounted" type="xs:boolean" default="false"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:group name="VoteGroup">
