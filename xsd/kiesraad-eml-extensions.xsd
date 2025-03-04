@@ -257,6 +257,65 @@
 			<xs:documentation>Electoral quota in % a candidate will be prefered</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	<xs:element name="InitialVotes" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>The initial votecount for a candidate or party which has been corrected. Should only appear for changed values of ValidVotes in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="RejectedVotesType">
+		<xs:simpleContent>
+			<xs:extension base="xs:nonNegativeInteger">
+				<xs:attribute name="Reason" type="xs:token" use="optional"/>
+				<xs:attribute name="ReasonCode" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="blanco"/>
+							<xs:enumeration value="ongeldig"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="VoteType" type="xs:token" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="InitialRejectedVotes" type="RejectedVotesType">
+		<xs:annotation>
+			<xs:documentation>The initial RejectedVotes for a reporting unit or main unit which has been corrected. Should only appear for changed values in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="UncountedVotesType">
+		<xs:simpleContent>
+			<xs:extension base="xs:nonNegativeInteger">
+				<xs:attribute name="Reason" type="xs:token" use="optional"/>
+				<xs:attribute name="ReasonCode" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="geldige stempassen"/>
+							<xs:enumeration value="geldige volmachtbewijzen"/>
+							<xs:enumeration value="geldige kiezerspassen"/>
+							<xs:enumeration value="toegelaten kiezers"/>
+							<xs:enumeration value="meer getelde stembiljetten"/>
+							<xs:enumeration value="minder getelde stembiljetten"/>
+							<xs:enumeration value="meegenomen stembiljetten"/>
+							<xs:enumeration value="te weinig uitgereikte stembiljetten"/>
+							<xs:enumeration value="te veel uitgereikte stembiljetten"/>
+							<xs:enumeration value="geen briefstembiljetten"/>
+							<xs:enumeration value="te veel briefstembiljetten"/>
+							<xs:enumeration value="kwijtgeraakte stembiljetten"/>
+							<xs:enumeration value="geen verklaring"/>
+							<xs:enumeration value="andere verklaring"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="VoteType" type="xs:token" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="InitialUncountedVotes" type="UncountedVotesType">
+		<xs:annotation>
+			<xs:documentation>The initial Uncountedvotes (metadata) for a reporting unit or main unit which has been corrected. Should only appear for changed values in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:element name="RegisteredParties">
 		<xs:annotation>
 			<xs:documentation>All registered names of political groupings</xs:documentation>

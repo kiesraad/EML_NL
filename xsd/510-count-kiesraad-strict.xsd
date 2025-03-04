@@ -170,6 +170,7 @@
 							<xs:element name="AffiliationIdentifier" type="AffiliationIdentifierStructure510"/>
 							<xs:element ref="ReferendumOptionIdentifier"/>
 						</xs:choice>
+						<xs:element ref="kr:InitialVotes" minOccurs="0" maxOccurs="1"/>
 						<xs:element name="ValidVotes" type="xs:nonNegativeInteger"/>
 					</xs:sequence>
 					<xs:attribute name="Value" type="VotingValueType" use="optional"/>
@@ -178,54 +179,10 @@
 			</xs:element>
 			<xs:element name="Cast" type="xs:nonNegativeInteger"/>
 			<xs:element name="TotalCounted" type="xs:nonNegativeInteger"/>
-			<xs:element name="RejectedVotes" minOccurs="2" maxOccurs="2">
-				<xs:complexType>
-					<xs:simpleContent>
-						<xs:extension base="xs:nonNegativeInteger">
-							<xs:attribute name="Reason" type="xs:token" use="optional"/>
-							<xs:attribute name="ReasonCode" use="required">
-								<xs:simpleType>
-									<xs:restriction base="xs:token">
-										<xs:enumeration value="blanco"/>
-										<xs:enumeration value="ongeldig"/>
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:attribute>
-							<xs:attribute name="VoteType" type="xs:token" use="optional"/>
-						</xs:extension>
-					</xs:simpleContent>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="UncountedVotes" minOccurs="0" maxOccurs="14">
-				<xs:complexType>
-					<xs:simpleContent>
-						<xs:extension base="xs:nonNegativeInteger">
-							<xs:attribute name="Reason" type="xs:token" use="optional"/>
-							<xs:attribute name="ReasonCode" use="required">
-								<xs:simpleType>
-									<xs:restriction base="xs:token">
-										<xs:enumeration value="geldige stempassen"/>
-										<xs:enumeration value="geldige volmachtbewijzen"/>
-										<xs:enumeration value="geldige kiezerspassen"/>
-										<xs:enumeration value="toegelaten kiezers"/>
-										<xs:enumeration value="meer getelde stembiljetten"/>
-										<xs:enumeration value="minder getelde stembiljetten"/>
-										<xs:enumeration value="meegenomen stembiljetten"/>
-										<xs:enumeration value="te weinig uitgereikte stembiljetten"/>
-										<xs:enumeration value="te veel uitgereikte stembiljetten"/>
-										<xs:enumeration value="geen briefstembiljetten"/>
-										<xs:enumeration value="te veel briefstembiljetten"/>
-										<xs:enumeration value="kwijtgeraakte stembiljetten"/>
-										<xs:enumeration value="geen verklaring"/>
-										<xs:enumeration value="andere verklaring"/>
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:attribute>
-							<xs:attribute name="VoteType" type="xs:token" use="optional"/>
-						</xs:extension>
-					</xs:simpleContent>
-				</xs:complexType>
-			</xs:element>
+			<xs:element ref="kr:InitialRejectedVotes" minOccurs="0" maxOccurs="2"/>
+			<xs:element name="RejectedVotes" minOccurs="2" maxOccurs="2" type="kr:RejectedVotesType"/>
+			<xs:element ref="kr:InitialUncountedVotes" minOccurs="0" maxOccurs="14"/>
+			<xs:element name="UncountedVotes" minOccurs="0" maxOccurs="14" type="kr:UncountedVotesType"/>
 		</xs:sequence>
 	</xs:group>
 </xs:schema>
