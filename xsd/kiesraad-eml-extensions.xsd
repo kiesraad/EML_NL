@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- EML extensions which are specific to Dutch elections -->
 <xs:schema xmlns="http://www.kiesraad.nl/extensions"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.kiesraad.nl/extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" targetNamespace="http://www.kiesraad.nl/extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
 	<xs:group name="ElectionIdentifierExtensionGroup">
 		<xs:annotation>
 			<xs:documentation>determines the order in which ElectionSubcategory, ElectionDomain, and ElectionDate have to be used</xs:documentation>
@@ -383,4 +385,53 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="LivingAddress" type="LivingAddressType"/>
+
+	<!-- 
+		Polling station information 
+	-->
+	<xs:simpleType name="BuildingUsageType">
+		<xs:annotation>
+			<xs:documentation>Building usage type according to the BAG. (see https://www.amsterdam.nl/stelselpedia/bag-index/handboek-inwinnen/introductie-bag/registratie/gebruiksdoel/)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Wonen"/>
+			<xs:enumeration value="Bijeenkomst"/>
+			<xs:enumeration value="Winkel"/>
+			<xs:enumeration value="Gezondheidszorg"/>
+			<xs:enumeration value="Kantoor"/>
+			<xs:enumeration value="Logies"/>
+			<xs:enumeration value="Industrie"/>
+			<xs:enumeration value="Onderwijs"/>
+			<xs:enumeration value="Sport"/>
+			<xs:enumeration value="Overig"/>
+			<xs:enumeration value="Cel"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Address information -->
+	<xs:simpleType name="Coordinate">
+		<xs:restriction base="xs:string">
+				<xs:pattern value="\d{1,2}\.\d{4,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="LocationType">
+		<xs:sequence>
+			<xs:element name="StreetName" type="xs:string"/>
+			<xs:element name="Number" type="xs:integer"/>
+			<xs:element name="Letter" type="xs:string"/>
+			<xs:element name="NumberAddition" type="xs:string"/>
+			<xs:element ref="xal:PostalCode"/>
+			<xs:element name="City" type="xs:string"/>
+			<xs:element name="AdditionalAddressInformation" type="xs:string"/>
+			<xs:element name="OpenTime" type="xs:dateTime"/>
+			<xs:element name="ClosingTime" type="xs:dateTime"/>
+			<xs:element name="RDx" type="xs:integer"/>
+			<xs:element name="RDy" type="xs:integer"/>
+			<xs:element name="Latitude" type="Coordinate"/>
+			<xs:element name="Longitude" type="Coordinate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Location" type="LocationType"/>
+
 </xs:schema>

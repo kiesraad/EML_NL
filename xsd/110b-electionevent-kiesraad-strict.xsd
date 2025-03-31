@@ -80,13 +80,12 @@
 					<xs:sequence>
 						<xs:element name="Address">
 							<xs:complexType>
-								<xs:choice>
-									<xs:annotation>
-										<xs:documentation>Due to compatibility with the older version this choice is needed. The version with xal:Address is deprecated. Please use Locality element.</xs:documentation>
-									</xs:annotation>
-									<xs:element ref="xal:Address"/>
+								<xs:sequence>
+									<!-- Only mandatory information (name required, zip code optional) for backwards compatibility -->
 									<xs:element name="Locality" type="xal:LocalityType110"/>
-								</xs:choice>
+									<!-- Additional, optional polling station information, multiple possible for mobile polling stations -->
+									<xs:element ref="kr:Location" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
 						<xs:element name="PollingStation">
@@ -104,6 +103,9 @@
 								</xs:simpleContent>
 							</xs:complexType>
 						</xs:element>
+						<xs:element name="PollingStationType" type="kr:ReportingUnitType" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="SharedLocation" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="BuildingUsage" type="kr:BuildingUsageType" minOccurs="0" maxOccurs="1"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
