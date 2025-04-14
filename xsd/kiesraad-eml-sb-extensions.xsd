@@ -5,7 +5,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" targetNamespace="http://www.kiesraad.nl/sb-extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
-    
+
     <xs:simpleType name="BuildingUsageType">
         <xs:annotation>
             <xs:documentation>Building usage type according to the BAG. (see https://www.amsterdam.nl/stelselpedia/bag-index/handboek-inwinnen/introductie-bag/registratie/gebruiksdoel/)</xs:documentation>
@@ -35,6 +35,12 @@
     <xs:simpleType name="RDCoordinate">
         <xs:restriction base="xs:decimal">
             <xs:pattern value="\d{1,6}(.\d{1,})?"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="WebsiteType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="https?://.+"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -74,13 +80,7 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="Website" minOccurs="0" maxOccurs="1">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:pattern value="https?://.+"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
+                <xs:element name="Website" type="WebsiteType" minOccurs="0" maxOccurs="1"/>
                 <!-- Opening times -->
                 <xs:element name="OpenTime" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="ClosingTime" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
@@ -97,15 +97,17 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="Accessible" type="xs:boolean"/>
-                            <xs:element name="Properties" type="AccessibilityProperties" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="AccessibilityProperties" type="AccessibilityPropertiesType" minOccurs="0" maxOccurs="1"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+
+                <xs:element name="OtherInfo" type="xs:string" minOccurs="0" maxOccurs="1"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="AccessibilityProperties">
+    <xs:complexType name="AccessibilityPropertiesType">
         <xs:sequence>
             <xs:element name="AccessiblePublicTransport" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
             <xs:element name="AccessibleToilet" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
@@ -138,6 +140,9 @@
             <xs:element name="Other" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:element name="MunicipalityContactDetails" type="xs:string"/>
+    <xs:element name="MunicipalityElectionSite" type="WebsiteType"/>
 
 
 </xs:schema>

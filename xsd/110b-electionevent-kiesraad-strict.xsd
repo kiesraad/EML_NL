@@ -166,6 +166,8 @@
 										</xs:element>
 										<xs:element ref="VotingMethod"/>
 										<xs:element ref="MaxVotes"/>
+										<xs:element ref="sb:MunicipalityContactDetails" minOccurs="0" maxOccurs="1"/>
+										<xs:element ref="sb:MunicipalityElectionSite" minOccurs="0" maxOccurs="1"/>
 										<xs:element name="PollingPlace" type="PollingPlaceStructure110" maxOccurs="unbounded"/>
 									</xs:sequence>
 								</xs:complexType>
