@@ -139,6 +139,28 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:complexType name="InvestigationsDSOType">
+		<xs:sequence>
+			<xs:element name="InvestigatedUnaccountedDifference" type="xs:boolean"/>
+			<xs:element name="InvestigatedOtherError" type="xs:boolean"/>
+			<xs:element name="ResultCorrected" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InvestigationsCSOType">
+		<xs:sequence>
+			<xs:element name="AdmittedVotersRecounted" type="xs:boolean"/>
+			<xs:element name="InvestigatedOtherReason" type="xs:boolean"/>
+			<xs:element name="BallotsRecounted" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ReportingUnitInvestigations">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="InvestigationsDSO" type="InvestigationsDSOType"/>
+				<xs:element name="InvestigationsCSO" type="InvestigationsCSOType"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
 	<xs:simpleType name="PublicationLanguageType">
 		<xs:restriction base="xs:token">
 			<xs:enumeration value="nl"/>
