@@ -139,26 +139,32 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:complexType name="InvestigationsDSOType">
-		<xs:sequence>
-			<xs:element name="InvestigatedUnaccountedDifference" type="xs:boolean"/>
-			<xs:element name="InvestigatedOtherError" type="xs:boolean"/>
-			<xs:element name="ResultCorrected" type="xs:boolean"/>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="InvestigationsCSOType">
-		<xs:sequence>
-			<xs:element name="AdmittedVotersRecounted" type="xs:boolean"/>
-			<xs:element name="InvestigatedOtherReason" type="xs:boolean"/>
-			<xs:element name="BallotsRecounted" type="xs:boolean"/>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:element name="ReportingUnitInvestigations">
 		<xs:complexType>
-			<xs:choice>
-				<xs:element name="InvestigationsDSO" type="InvestigationsDSOType"/>
-				<xs:element name="InvestigationsCSO" type="InvestigationsCSOType"/>
-			</xs:choice>
+			<xs:sequence>
+				<xs:element name="Investigation" minOccurs="0" maxOccurs="3">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:boolean">
+								<xs:attribute name="ReasonCode" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<!-- DSO -->
+											<xs:enumeration value="onderzocht vanwege onverklaard verschil"/>
+											<xs:enumeration value="onderzocht vanwege andere fout"/>
+											<xs:enumeration value="uitslag gecorrigeerd"/>
+											<!-- CSO -->
+											<xs:enumeration value="toegelaten kiezers opnieuw vastgesteld"/>
+											<xs:enumeration value="onderzocht vanwege andere reden"/>
+											<xs:enumeration value="stembiljetten deels herteld"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:simpleType name="PublicationLanguageType">
