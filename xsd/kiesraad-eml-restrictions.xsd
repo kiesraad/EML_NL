@@ -272,8 +272,8 @@
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="ReportingUnitIdentifierStructureKR">
-				<xs:attribute name="Type" type="kr:ReportingUnitType" default="FixedLocation"/>
-				<xs:attribute name="SharedLocation" type="xs:boolean" default="false"/>
+				<xs:attribute ref="kr:ReportingUnitType"/>
+				<xs:attribute ref="kr:SharedLocation"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
