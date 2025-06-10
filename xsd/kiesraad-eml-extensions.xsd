@@ -2,7 +2,14 @@
 <!-- EML extensions which are specific to Dutch elections -->
 <xs:schema xmlns="http://www.kiesraad.nl/extensions"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.kiesraad.nl/extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:attribute name="SchemaVersion" type="xs:NMTOKEN"/>
+	<xs:element name="Schema">
+		<xs:annotation>
+			<xs:documentation>The EML_NL schema version. Note that this differs from the OASIS EML schema version (5) on which EML_NL is based</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Version" use="required" type="xs:NMTOKEN"/>
+		</xs:complexType>
+	</xs:element>
 	<xs:group name="ElectionIdentifierExtensionGroup">
 		<xs:annotation>
 			<xs:documentation>determines the order in which ElectionSubcategory, ElectionDomain, and ElectionDate have to be used</xs:documentation>

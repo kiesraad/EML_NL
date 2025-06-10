@@ -29,6 +29,7 @@
 		<xs:complexContent>
 			<xs:restriction base="EMLstructure">
 				<xs:sequence>
+					<xs:element ref="kr:Schema"/>
 					<xs:element ref="TransactionId"/>
 					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR" minOccurs="0"/>
 					<xs:element name="IssueDate" type="DateType" minOccurs="0"/>
@@ -42,13 +43,6 @@
 				</xs:sequence>
 				<xs:attribute name="Id" type="MessageTypeType" use="required"/>
 			</xs:restriction>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="EMLstructureKRExt">
-		<xs:complexContent>
-			<xs:extension base="EMLstructureKR">
-				<xs:attribute ref="kr:SchemaVersion" use="required"/>
-			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="ManagingAuthorityStructureKR">

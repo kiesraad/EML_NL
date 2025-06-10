@@ -16,8 +16,9 @@
 			<xs:documentation>only TransactionId and IssueDate needed, CanoncalizationMethod added</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="EMLstructureKRExt">
+			<xs:restriction base="EMLstructureKR">
 				<xs:sequence>
+					<xs:element ref="kr:Schema"/>
 					<xs:element ref="TransactionId"/>
 					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR"/>
 					<xs:element name="IssueDate" type="DateType"/>
