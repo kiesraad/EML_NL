@@ -266,15 +266,4 @@
 			</xs:restriction>
 		</xs:simpleContent>
 	</xs:complexType>
-	<xs:complexType name="ReportingUnitIdentifierStructureKRExt">
-		<xs:annotation>
-			<xs:documentation>Adds reporting unit type and indication of shared location</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="ReportingUnitIdentifierStructureKR">
-				<xs:attribute ref="kr:ReportingUnitType"/>
-				<xs:attribute ref="kr:SharedLocation"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
 </xs:schema>

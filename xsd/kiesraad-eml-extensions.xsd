@@ -217,7 +217,7 @@
 			<xs:pattern value="(EP|EK|TK|GR|BC|GC|ER|PS|AB|NR|PR|LR|IR)2\d\d\d(\d\d\d\d)?(_[\w_-]*)?"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:attribute name="ReportingUnitType">
+	<xs:element name="ReportingUnitType">
 		<xs:simpleType>
 			<xs:annotation>
 				<xs:documentation>The type of reporting unit, either FixedLocation, Mobile, or 'Special'</xs:documentation>
@@ -228,12 +228,12 @@
 				<xs:enumeration value="Special"/>
 			</xs:restriction>
 		</xs:simpleType>
-	</xs:attribute>
-	<xs:attribute name="SharedLocation" type="xs:boolean">
+	</xs:element>
+	<xs:element name="SharedLocation" type="xs:boolean">
 		<xs:annotation>
-			<xs:documentation>Boolean attribute, true if a given reporting unit shares this location with another reporting unit</xs:documentation>
+			<xs:documentation>Boolean element, true if a given reporting unit shares this location with another reporting unit</xs:documentation>
 		</xs:annotation>
-	</xs:attribute>
+	</xs:element>
 	<xs:simpleType name="CandidateIdType">
 		<xs:annotation>
 			<xs:documentation>restricts the basic type to the allowed values for the candidate Id (a positive decimal number)</xs:documentation>
