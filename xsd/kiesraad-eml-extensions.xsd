@@ -257,9 +257,19 @@
 			<xs:documentation>Electoral quota in % a candidate will be prefered</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="InitialVotes" type="xs:nonNegativeInteger">
+	<xs:element name="InitialValidVotes" type="xs:nonNegativeInteger">
 		<xs:annotation>
 			<xs:documentation>The initial votecount for a candidate or party which has been corrected. Should only appear for changed values of ValidVotes in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InitialCast" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>The initial 'cast' element which has been corrected. Should only appear for changed values of 'cast' in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InitialTotalCounted" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>The initial total amount of counted valid votes. Should only appear for changed values of TotalCounted in correction files</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="RejectedVotesType">
