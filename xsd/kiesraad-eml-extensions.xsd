@@ -251,15 +251,17 @@
 			<xs:pattern value="[1-9]\d*|geen|alle|M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="VoteCountingMethodType">
+	<xs:element name="CountingMethod">
 		<xs:annotation>
 			<xs:documentation>The way in which the votes were counted, either a centralised count (CSO) or a decentralised count (DSO)</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="centralised"/>
-			<xs:enumeration value="decentralised"/>
-		</xs:restriction>
-	</xs:simpleType>
+		<xs:simpleType>
+			<xs:restriction base="xs:token">
+				<xs:enumeration value="centralised"/>
+				<xs:enumeration value="decentralised"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
 	<xs:element name="NumberOfSeats" type="xs:positiveInteger"/>
 	<xs:element name="PreferenceThreshold" type="xs:nonNegativeInteger">
 		<xs:annotation>

@@ -114,6 +114,7 @@
 	<xs:element name="Count">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="kr:CountingMethod" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="EventIdentifier"/>
 				<xs:element name="Election">
 					<xs:complexType>
@@ -150,7 +151,6 @@
 				</xs:element>
 				<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
-			<xs:attribute name="Method" type="kr:VoteCountingMethodType"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ReportingUnitVotes">
