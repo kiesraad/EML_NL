@@ -361,6 +361,18 @@
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:element>
+	<xs:element name="GenderAnnex">
+		<xs:annotation>
+			<xs:documentation>Restricts the base EML gender type to not allow 'unknown', replacing it with 'other'. Prefer using this over the original 'Gender' element.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:token">
+				<xs:enumeration value="male"/>
+				<xs:enumeration value="female"/>
+				<xs:enumeration value="other"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
 	<xs:element name="NationalIdentificationNumber" type="xs:token">
 		<xs:annotation>
 			<xs:documentation>Number identifying a person in the National administration. For the Netherlands, this is the Burgerservicenummer (BSN).</xs:documentation>

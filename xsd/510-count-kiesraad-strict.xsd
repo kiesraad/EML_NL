@@ -81,7 +81,10 @@
 				<xs:sequence>
 					<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructureKR"/>
 					<xs:element name="CandidateFullName" type="PersonNameStructure" minOccurs="0"/>
-					<xs:element ref="Gender" minOccurs="0"/>
+					<xs:choice minOccurs="0">
+						<xs:element ref="Gender"/>
+						<xs:element ref="kr:GenderAnnex"/>
+					</xs:choice>
 					<xs:element name="QualifyingAddress" type="MinimalQualifyingAddressStructureKR" minOccurs="0"/>
 				</xs:sequence>
 			</xs:restriction>

@@ -77,7 +77,10 @@
 					<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructure210"/>
 					<xs:element name="CandidateFullName" type="PersonNameStructure"/>
 					<xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
-					<xs:element name="Gender" type="GenderTypeKR"/>
+					<xs:choice minOccurs="0">
+						<xs:element ref="Gender"/>
+						<xs:element ref="kr:GenderAnnex"/>
+					</xs:choice>
 					<xs:element name="QualifyingAddress" type="QualifyingAddressStructureKR"/>
 					<xs:element name="Contact" type="ContactDetailsStructureKR" minOccurs="0"/>
 					<xs:element name="Agent" type="AgentStructureKR" minOccurs="0"/>
