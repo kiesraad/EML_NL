@@ -105,8 +105,8 @@
 								</xs:simpleContent>
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="PollingStationType" type="kr:ReportingUnitType" minOccurs="0" maxOccurs="1"/>
-						<xs:element name="SharedLocation" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
+						<xs:element ref="kr:ReportingUnitType" minOccurs="0" maxOccurs="1"/>
+						<xs:element ref="kr:SharedLocation" minOccurs="0" maxOccurs="1"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>

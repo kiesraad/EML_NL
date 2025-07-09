@@ -59,7 +59,13 @@
                 <xs:element name="Number" type="xs:integer" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="Letter" type="xs:string" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="NumberAddition" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                <xs:element ref="xal:PostalCode" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="PostalCode" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="\d{4} [A-Z]{2}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="City" type="xs:string" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="AdditionalAddressInformation" type="xs:string" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="BuildingUsage" type="BuildingUsageType" minOccurs="0" maxOccurs="1"/>
@@ -82,13 +88,19 @@
                 </xs:element>
                 <xs:element name="Website" type="WebsiteType" minOccurs="0" maxOccurs="1"/>
                 <!-- Opening times -->
-                <xs:element name="OpenTime" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="ClosingTime" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+                <xs:sequence minOccurs="0" maxOccurs="1">
+                    <xs:element name="OpenTime" type="xs:dateTime"/>
+                    <xs:element name="ClosingTime" type="xs:dateTime"/>
+                </xs:sequence>
                 <!-- Geographical location -->
-                <xs:element name="RDx" type="RDCoordinate" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="RDy" type="RDCoordinate" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="Latitude" type="Coordinate" minOccurs="0" maxOccurs="1"/>
-                <xs:element name="Longitude" type="Coordinate" minOccurs="0" maxOccurs="1"/>
+                <xs:sequence minOccurs="0" maxOccurs="1">
+                    <xs:element name="RDx" type="RDCoordinate"/>
+                    <xs:element name="RDy" type="RDCoordinate"/>
+                </xs:sequence>
+                <xs:sequence minOccurs="0" maxOccurs="1">
+                    <xs:element name="Latitude" type="Coordinate"/>
+                    <xs:element name="Longitude" type="Coordinate"/>
+                </xs:sequence>
                 <!-- Additional fields -->
                 <xs:element name="CountingLocation" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
 
