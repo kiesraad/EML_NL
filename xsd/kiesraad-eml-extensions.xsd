@@ -251,15 +251,22 @@
 			<xs:pattern value="[1-9]\d*|geen|alle|M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="CountPhaseType">
+	<xs:element name="Phase">
 		<xs:annotation>
-			<xs:documentation>The 'phase' of a count. Restricted to either 'initial' for the first count or 'correction' for a count which is the result of a correction</xs:documentation>
+			<xs:documentation>The 'phase' of a count. PhaseCodes correspond to the names of the proces-verbaal</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="initial"/>
-			<xs:enumeration value="correction"/>
-		</xs:restriction>
-	</xs:simpleType>
+		<xs:complexType>
+			<xs:sequence/>
+			<xs:attribute name="PhaseCode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="eerste zitting"/>
+						<xs:enumeration value="corrigendum"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="NumberOfSeats" type="xs:positiveInteger"/>
 	<xs:element name="PreferenceThreshold" type="xs:nonNegativeInteger">
 		<xs:annotation>
