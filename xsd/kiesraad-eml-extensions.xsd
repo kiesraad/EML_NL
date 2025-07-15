@@ -253,14 +253,19 @@
 	</xs:simpleType>
 	<xs:element name="CountingMethod">
 		<xs:annotation>
-			<xs:documentation>The way in which the votes were counted, either a centralised count (CSO) or a decentralised count (DSO)</xs:documentation>
+			<xs:documentation>The way in which the votes were counted. Restricted to valid counting methods in Ducth electoral law.</xs:documentation>
 		</xs:annotation>
-		<xs:simpleType>
-			<xs:restriction base="xs:token">
-				<xs:enumeration value="centralised"/>
-				<xs:enumeration value="decentralised"/>
-			</xs:restriction>
-		</xs:simpleType>
+		<xs:complexType>
+			<xs:sequence/>
+			<xs:attribute name="MethodCode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="centrale stemopneming"/>
+						<xs:enumeration value="decentrale stemopneming"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="NumberOfSeats" type="xs:positiveInteger"/>
 	<xs:element name="PreferenceThreshold" type="xs:nonNegativeInteger">
