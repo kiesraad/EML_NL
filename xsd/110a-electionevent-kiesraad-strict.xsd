@@ -20,14 +20,12 @@
 					<xs:element ref="TransactionId"/>
 					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR" minOccurs="0"/>
 					<xs:element name="IssueDate" type="DateType" minOccurs="0"/>
-					<xs:choice>
+					<xs:choice minOccurs="1" maxOccurs="2">
 						<xs:annotation>
 							<xs:documentation>this choice is not logical but necessary</xs:documentation>
 						</xs:annotation>
-						<xs:sequence>
-							<xs:element ref="kr:CreationDateTime"/>
-							<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
-						</xs:sequence>
+						<xs:element ref="kr:CreationDateTime"/>
+						<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
 					</xs:choice>
 				</xs:sequence>
 				<xs:attribute name="Id" use="required" fixed="110a">
@@ -47,16 +45,14 @@
 				<xs:sequence>
 					<xs:element name="ElectionName" type="xs:token"/>
 					<xs:element name="ElectionCategory" type="kr:ElectionCategoryType"/>
-					<xs:choice>
+					<xs:choice minOccurs="3" maxOccurs="4">
 						<xs:annotation>
 							<xs:documentation>this choice is not logical but necessary</xs:documentation>
 						</xs:annotation>
-						<xs:sequence>
-							<xs:element ref="kr:ElectionSubcategory"/>
-							<xs:element ref="kr:ElectionDomain" minOccurs="0"/>
-							<xs:element ref="kr:ElectionDate"/>
-							<xs:element ref="kr:NominationDate"/>
-						</xs:sequence>
+						<xs:element ref="kr:ElectionSubcategory"/>
+						<xs:element ref="kr:ElectionDomain" minOccurs="0"/>
+						<xs:element ref="kr:ElectionDate"/>
+						<xs:element ref="kr:NominationDate"/>
 					</xs:choice>
 				</xs:sequence>
 			</xs:restriction>
