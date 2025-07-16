@@ -139,6 +139,34 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="ReportingUnitInvestigations">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Investigation" minOccurs="0" maxOccurs="3">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:boolean">
+								<xs:attribute name="ReasonCode" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<!-- DSO -->
+											<xs:enumeration value="onderzocht vanwege onverklaard verschil"/>
+											<xs:enumeration value="onderzocht vanwege andere fout"/>
+											<xs:enumeration value="uitslag gecorrigeerd"/>
+											<!-- CSO -->
+											<xs:enumeration value="toegelaten kiezers opnieuw vastgesteld"/>
+											<xs:enumeration value="onderzocht vanwege andere reden"/>
+											<xs:enumeration value="stembiljetten deels herteld"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<xs:simpleType name="PublicationLanguageType">
 		<xs:restriction base="xs:token">
 			<xs:enumeration value="nl"/>

@@ -157,6 +157,7 @@
 			<xs:sequence>
 				<xs:element name="ReportingUnitIdentifier" type="ReportingUnitIdentifierStructureKR"/>
 				<xs:group ref="VoteGroup"/>
+				<xs:element ref="kr:ReportingUnitInvestigations" minOccurs="0" maxOccurs="1"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
