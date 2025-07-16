@@ -18,14 +18,14 @@
 		<xs:complexContent>
 			<xs:restriction base="EMLstructureKR">
 				<xs:sequence>
-					<xs:element ref="kr:Schema"/>
 					<xs:element ref="TransactionId"/>
 					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR" minOccurs="0"/>
 					<xs:element name="IssueDate" type="DateType"/>
-					<xs:choice minOccurs="1" maxOccurs="2">
+					<xs:choice minOccurs="2" maxOccurs="3">
 						<xs:annotation>
 							<xs:documentation>this choice is not logical but necessary</xs:documentation>
 						</xs:annotation>
+						<xs:element ref="kr:Schema"/>
 						<xs:element ref="kr:CreationDateTime"/>
 						<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
 					</xs:choice>
