@@ -87,6 +87,11 @@
 					<xs:documentation xml:lang="en">eilandsraad, has always less than 19 seats</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="KC">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">kiescollege</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="TK"/>
 			<xs:enumeration value="EK"/>
 			<xs:enumeration value="EP"/>
