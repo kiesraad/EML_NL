@@ -3,6 +3,7 @@
 <xs:schema xmlns="http://www.kiesraad.nl/extensions"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" targetNamespace="http://www.kiesraad.nl/extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
 	<xs:element name="Schema">
 		<xs:annotation>
 			<xs:documentation>The EML_NL schema version. Note that this differs from the OASIS EML schema version (5) on which EML_NL is based</xs:documentation>
@@ -11,7 +12,6 @@
 			<xs:attribute name="Version" use="required" type="xs:NMTOKEN"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
 	<xs:group name="ElectionIdentifierExtensionGroup">
 		<xs:annotation>
 			<xs:documentation>determines the order in which ElectionSubcategory, ElectionDomain, and ElectionDate have to be used</xs:documentation>
