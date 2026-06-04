@@ -115,6 +115,7 @@
 	<xs:element name="Count">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="kr:CountingMethod" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="EventIdentifier"/>
 				<xs:element ref="kr:Phase" minOccurs="0"/>
 				<xs:element name="Election">
