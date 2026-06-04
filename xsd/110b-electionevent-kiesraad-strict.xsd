@@ -3,10 +3,12 @@
 <xs:schema xmlns="urn:oasis:names:tc:evs:schema:eml"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:kr="http://www.kiesraad.nl/extensions"
+	xmlns:sb="http://www.kiesraad.nl/sb-extensions"
 	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
 	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" targetNamespace="urn:oasis:names:tc:evs:schema:eml" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0" id="eml-110">
 	<xs:include schemaLocation="kiesraad-eml-restrictions.xsd"/>
 	<xs:import namespace="http://www.kiesraad.nl/extensions" schemaLocation="kiesraad-eml-extensions.xsd"/>
+	<xs:import namespace="http://www.kiesraad.nl/sb-extensions" schemaLocation="kiesraad-eml-sb-extensions.xsd"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="external/xmldsig-core-schema.xsd"/>
 	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
 	<xs:complexType name="EMLstructure110">
@@ -77,13 +79,12 @@
 					<xs:sequence>
 						<xs:element name="Address">
 							<xs:complexType>
-								<xs:choice>
-									<xs:annotation>
-										<xs:documentation>Due to compatibility with the older version this choice is needed. The version with xal:Address is deprecated. Please use Locality element.</xs:documentation>
-									</xs:annotation>
-									<xs:element ref="xal:Address"/>
+								<xs:sequence>
+									<!-- Only mandatory information (name required, zip code optional) for backwards compatibility -->
 									<xs:element name="Locality" type="xal:LocalityType110"/>
-								</xs:choice>
+									<!-- Additional, optional polling station information, multiple possible for mobile polling stations -->
+									<xs:element ref="sb:Location" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
 						<xs:element name="PollingStation">
@@ -101,6 +102,8 @@
 								</xs:simpleContent>
 							</xs:complexType>
 						</xs:element>
+						<xs:element ref="kr:ReportingUnitType" minOccurs="0" maxOccurs="1"/>
+						<xs:element ref="kr:SharedLocation" minOccurs="0" maxOccurs="1"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -160,6 +163,8 @@
 										</xs:element>
 										<xs:element ref="VotingMethod"/>
 										<xs:element ref="MaxVotes"/>
+										<xs:element ref="sb:MunicipalityContactDetails" minOccurs="0" maxOccurs="1"/>
+										<xs:element ref="sb:MunicipalityElectionSite" minOccurs="0" maxOccurs="1"/>
 										<xs:element name="PollingPlace" type="PollingPlaceStructure110" maxOccurs="unbounded"/>
 									</xs:sequence>
 								</xs:complexType>
