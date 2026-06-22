@@ -250,7 +250,7 @@
 			<xs:enumeration value="PR"/>
 			<xs:enumeration value="LR"/>
 			<xs:enumeration value="IR"/>
-			<xs:enumeration value="KC">
+			<xs:enumeration value="KC"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ElectionIdType">
