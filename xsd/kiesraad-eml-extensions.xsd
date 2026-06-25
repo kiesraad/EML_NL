@@ -87,9 +87,14 @@
 					<xs:documentation xml:lang="en">eilandsraad, has always less than 19 seats</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
-			<xs:enumeration value="KC">
+			<xs:enumeration value="KCCN">
 				<xs:annotation>
-					<xs:documentation xml:lang="en">kiescollege</xs:documentation>
+					<xs:documentation xml:lang="en">kiescollege Caribisch Nederland (Bonaire, Saba, Sint-Eustatius)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KCNI">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">kiescollege Niet-Ingezetenen</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="TK"/>
