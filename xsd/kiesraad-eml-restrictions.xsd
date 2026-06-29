@@ -32,10 +32,11 @@
 					<xs:element ref="TransactionId"/>
 					<xs:element name="ManagingAuthority" type="ManagingAuthorityStructureKR" minOccurs="0"/>
 					<xs:element name="IssueDate" type="DateType" minOccurs="0"/>
-					<xs:choice minOccurs="0" maxOccurs="2">
+					<xs:choice minOccurs="1" maxOccurs="3">
 						<xs:annotation>
 							<xs:documentation>this choice is not logical but necessary, see also OSV-1793</xs:documentation>
 						</xs:annotation>
+						<xs:element ref="kr:Schema"/>
 						<xs:element ref="kr:CreationDateTime" minOccurs="0"/>
 						<xs:element ref="ds:CanonicalizationMethod" minOccurs="0"/>
 					</xs:choice>
@@ -112,7 +113,10 @@
 			<xs:element name="CandidateIdentifier" type="CandidateIdentifierStructureKR"/>
 			<xs:element name="CandidateFullName" type="PersonNameStructure" minOccurs="0"/>
 			<xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
-			<xs:element ref="Gender" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element ref="Gender"/>
+				<xs:element ref="kr:GenderAnnex"/>
+			</xs:choice>
 			<xs:element name="QualifyingAddress" type="GenericQualifyingAddressStructureKR" minOccurs="0"/>
 			<xs:element name="Contact" type="ContactDetailsStructureKR" minOccurs="0"/>
 			<xs:element name="Agent" type="AgentStructureKR" minOccurs="0"/>

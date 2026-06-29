@@ -1,4 +1,8 @@
 # EML_NL schema definitions
+
+> [!WARNING]  
+> The main branch of this repository might include changes which will take effect in the next version of the standard. Always check the [latest release](https://github.com/kiesraad/EML_NL/releases/latest) for the current version of the EML_NL standard!
+
 This repository contains the schema definitions for the EML_NL standard, which is a modified version of the [Election Markup Language (EML) Version 5.0](https://docs.oasis-open.org/election/eml/v5.0/EML-Schema-Descriptions-v5.0.html) by [OASIS Open](https://www.oasis-open.org/).
 
 The standard has been modified, extended and restricted to fit the Dutch electoral law.
