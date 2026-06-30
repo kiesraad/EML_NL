@@ -304,6 +304,22 @@
 			<xs:pattern value="[1-9]\d*|geen|alle|M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:element name="CountingMethod">
+		<xs:annotation>
+			<xs:documentation>The way in which the votes were counted. Restricted to valid counting methods in Ducth electoral law.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence/>
+			<xs:attribute name="MethodCode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="centrale stemopneming"/>
+						<xs:enumeration value="decentrale stemopneming"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="Phase">
 		<xs:annotation>
 			<xs:documentation>The 'phase' of a count. PhaseCodes correspond to the names of the proces-verbaal</xs:documentation>
