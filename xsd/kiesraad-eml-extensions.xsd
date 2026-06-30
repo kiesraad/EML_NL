@@ -4,6 +4,14 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" targetNamespace="http://www.kiesraad.nl/extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" schemaLocation="xAL-kiesraad-strict.xsd"/>
+	<xs:element name="Schema">
+		<xs:annotation>
+			<xs:documentation>The EML_NL schema version. Note that this differs from the OASIS EML schema version (5) on which EML_NL is based</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Version" use="required" type="xs:NMTOKEN"/>
+		</xs:complexType>
+	</xs:element>
 	<xs:group name="ElectionIdentifierExtensionGroup">
 		<xs:annotation>
 			<xs:documentation>determines the order in which ElectionSubcategory, ElectionDomain, and ElectionDate have to be used</xs:documentation>
@@ -141,6 +149,34 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="ReportingUnitInvestigations">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Investigation" minOccurs="0" maxOccurs="3">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:boolean">
+								<xs:attribute name="ReasonCode" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<!-- DSO -->
+											<xs:enumeration value="onderzocht vanwege onverklaard verschil"/>
+											<xs:enumeration value="onderzocht vanwege andere fout"/>
+											<xs:enumeration value="uitslag gecorrigeerd"/>
+											<!-- CSO -->
+											<xs:enumeration value="toegelaten kiezers opnieuw vastgesteld"/>
+											<xs:enumeration value="onderzocht vanwege andere reden"/>
+											<xs:enumeration value="stembiljetten deels herteld"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<xs:simpleType name="PublicationLanguageType">
 		<xs:restriction base="xs:token">
 			<xs:enumeration value="nl"/>
@@ -270,10 +306,95 @@
 			<xs:pattern value="[1-9]\d*|geen|alle|M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:element name="Phase">
+		<xs:annotation>
+			<xs:documentation>The 'phase' of a count. PhaseCodes correspond to the names of the proces-verbaal</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence/>
+			<xs:attribute name="PhaseCode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="eerste zitting"/>
+						<xs:enumeration value="corrigendum"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="NumberOfSeats" type="xs:positiveInteger"/>
 	<xs:element name="PreferenceThreshold" type="xs:nonNegativeInteger">
 		<xs:annotation>
 			<xs:documentation>Electoral quota in % a candidate will be prefered</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InitialValidVotes" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>The initial votecount for a candidate or party which has been corrected. Should only appear for changed values of ValidVotes in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InitialCast" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>The initial 'cast' element which has been corrected. Should only appear for changed values of 'cast' in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InitialTotalCounted" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>The initial total amount of counted valid votes. Should only appear for changed values of TotalCounted in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="RejectedVotesType">
+		<xs:simpleContent>
+			<xs:extension base="xs:nonNegativeInteger">
+				<xs:attribute name="Reason" type="xs:token" use="optional"/>
+				<xs:attribute name="ReasonCode" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="blanco"/>
+							<xs:enumeration value="ongeldig"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="VoteType" type="xs:token" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="InitialRejectedVotes" type="RejectedVotesType">
+		<xs:annotation>
+			<xs:documentation>The initial RejectedVotes for a reporting unit or main unit which has been corrected. Should only appear for changed values in correction files</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="UncountedVotesType">
+		<xs:simpleContent>
+			<xs:extension base="xs:nonNegativeInteger">
+				<xs:attribute name="Reason" type="xs:token" use="optional"/>
+				<xs:attribute name="ReasonCode" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="geldige stempassen"/>
+							<xs:enumeration value="geldige volmachtbewijzen"/>
+							<xs:enumeration value="geldige kiezerspassen"/>
+							<xs:enumeration value="toegelaten kiezers"/>
+							<xs:enumeration value="meer getelde stembiljetten"/>
+							<xs:enumeration value="minder getelde stembiljetten"/>
+							<xs:enumeration value="meegenomen stembiljetten"/>
+							<xs:enumeration value="te weinig uitgereikte stembiljetten"/>
+							<xs:enumeration value="te veel uitgereikte stembiljetten"/>
+							<xs:enumeration value="geen briefstembiljetten"/>
+							<xs:enumeration value="te veel briefstembiljetten"/>
+							<xs:enumeration value="kwijtgeraakte stembiljetten"/>
+							<xs:enumeration value="geen verklaring"/>
+							<xs:enumeration value="andere verklaring"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="VoteType" type="xs:token" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="InitialUncountedVotes" type="UncountedVotesType">
+		<xs:annotation>
+			<xs:documentation>The initial Uncountedvotes (metadata) for a reporting unit or main unit which has been corrected. Should only appear for changed values in correction files</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="RegisteredParties">
@@ -377,6 +498,18 @@
 		<xs:simpleType>
 			<xs:restriction base="xs:string">
 				<xs:pattern value="(XX-(XX|\d[1-9]|[1-9]0)-([1-9]\d{3}|\d[1-9]\d\d|\d\d[1-9]\d|\d{3}[1-9])|XX-XX-XXXX)"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="GenderAnnex">
+		<xs:annotation>
+			<xs:documentation>Restricts the base EML gender type to not allow 'unknown', replacing it with 'other'. Prefer using this over the original 'Gender' element.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:token">
+				<xs:enumeration value="male"/>
+				<xs:enumeration value="female"/>
+				<xs:enumeration value="other"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:element>
