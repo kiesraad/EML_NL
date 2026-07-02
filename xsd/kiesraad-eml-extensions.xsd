@@ -508,6 +508,7 @@
 			<xs:enumeration value="WATERSCHAP"/>
 			<xs:enumeration value="WATERSCHAP_KIESKRING"/>
 			<xs:enumeration value="WATERSCHAP_GEMEENTE"/>
+			<xs:enumeration value="KIESCOLLEGE"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="CommitteeCategoryType">
