@@ -78,7 +78,7 @@
 	</xs:complexType>
 	<xs:complexType name="CandidateIdentifierStructure520">
 		<xs:annotation>
-			<xs:documentation>Id Attribute mandatory </xs:documentation>
+			<xs:documentation>Id Attribute mandatory. Does not refer to candidate number but the order in which the candidates are elected</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="CandidateIdentifierStructureKR">
