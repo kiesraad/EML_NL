@@ -255,7 +255,7 @@
 			<xs:enumeration value="PR"/>
 			<xs:enumeration value="LR"/>
 			<xs:enumeration value="IR"/>
-			<xs:enumeration value="KC">
+			<xs:enumeration value="KC"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ElectionIdType">
@@ -263,7 +263,7 @@
 			<xs:documentation>restricts the basic type to the allowed values for the election Id (election category + year)</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
-			<xs:pattern value="(EP|EK|TK|GR|BC|GC|ER|PS|AB|NR|PR|LR|IR)2\d\d\d(\d\d\d\d)?(_[\w_-]*)?"/>
+			<xs:pattern value="(EP|EK|TK|GR|BC|GC|ER|PS|AB|NR|PR|LR|IR|KC)2\d\d\d(\d\d\d\d)?(_[\w_-]*)?"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:element name="ReportingUnitType">
