@@ -93,7 +93,7 @@
 	</xs:complexType>
 	<xs:complexType name="CandidateIdentifierStructure510">
 		<xs:annotation>
-			<xs:documentation>only CandidateName and ShortCode (Element or Attribute) allowed, Id Attribute mandatory </xs:documentation>
+			<xs:documentation>only CandidateName and ShortCode (Element or Attribute) allowed, Id Attribute mandatory when candidate number is known at this level</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="CandidateIdentifierStructureKR">
