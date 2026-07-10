@@ -99,7 +99,7 @@
 			</xs:enumeration>
 			<xs:enumeration value="KCCN">
 				<xs:annotation>
-					<xs:documentation xml:lang="en">kiescollege Caribisch Nederland</xs:documentation>
+					<xs:documentation xml:lang="en">kiescolleges Caribisch Nederland</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="KCNI">
