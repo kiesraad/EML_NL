@@ -74,7 +74,7 @@ Simple type CommitteeCategoryType definieert de verschillende stembureautypen: C
 
 Het element DateOfBirthAnnex definieert de geboortedatum, ook als deze slechts deels bekend is, bijv. “XX-05-1976”.
 
-Het element GenderAnnex is een vervangend element voor het core EML Gender element. Aangezien Gender in alle specifieke EML schemas een optioneel veld is, is de waarde ‘unknown’ niet nodig. In plaats daarvan bevat dit element de optie ‘other’ welke bij een wijziging in het kiesbesluit als indicatie voor het geslacht \<\<x\>\> gebruikt zou kunnen worden\[1\].
+Het element GenderAnnex is een vervangend element voor het core EML Gender element. Aangezien Gender in alle specifieke EML schemas een optioneel veld is, is de waarde ‘unknown’ niet nodig. In plaats daarvan bevat dit element de optie ‘other’ welke bij een wijziging in het kiesbesluit als indicatie voor het geslacht \<\<x\>\> gebruikt zou kunnen worden \[1\].
 
 Het element NationalIdentificationNumber voegt de mogelijkheid toe om het BSN-nummer van een kandidaat te registreren in de EML-210. In het modelformulier H9 (de instemmingsverklaring) wordt bij de kandidaatgegevens dit nummer opgenomen. Dit nummer dient ter ondersteuning van de controle van de kandidaatsgegevens door het centraal stembureau.
 
@@ -86,7 +86,7 @@ Dit bestand definieert nieuwe elementen die informatie over stembureaus verschaf
 
 Deze elementen worden gebruikt om de EML 110b flink uit te breiden met informatie over stembureaus. Hiervoor is [de open data standaard stembureaus van waarismijnstemlokaal.nl](https://waarismijnstemlokaal.nl/files/Stembureaus%20Open%20Data%20Standaard%201.6%20-%20Europese%20Parlementsverkiezingen%202024%20voorbeeld.ods), specifiek verise 1.6, vertaald naar XSD schema definities die in de EML\_NL standaard gebruikt kunnen worden. Dit maakt het mogelijk voor software die deze extra stembureauinformatie verzamelt mogelijk deze ook weg te schrijven in de EML 110b.
 
-Simple type BuildingUsageType definieert een gebruiksdoel van een pand zoals gedinieerd in de BAG\[2\] en staat de volgende waarden toe: “Wonen”, “Bijeenkomst”, “Winkel”, “Gezondheidszorg”, “Kantoor”, “Logies”, “Industrie”, “Onderwijs”, “Sport”, “Overig” of “Cel”.
+Simple type BuildingUsageType definieert een gebruiksdoel van een pand zoals gedinieerd in de BAG \[2\] en staat de volgende waarden toe: “Wonen”, “Bijeenkomst”, “Winkel”, “Gezondheidszorg”, “Kantoor”, “Logies”, “Industrie”, “Onderwijs”, “Sport”, “Overig” of “Cel”.
 
 Simple type Coordinate definieert het type dat gebruikt wordt om de latitude en longitude van de locatie van een stembureau te registreren. Het bestaat uit twee getallen, gevolgd door een punt (“.”) en dan vier of meer getallen om de locatie met voldoende precisie vast te leggen. Voorbeelden van geldige waarden zijn “1.1234”, “52.546493” en “12.123456789”.
 
@@ -118,7 +118,7 @@ Element BuildingUsage definieert het gebruiksdoel van het gebouw waar het stembu
 
 Element DistictName definieert de naam van de wijk waarin het stembureau zich bevindt. Een wijk bestaat uit één of meer buurten.
 
-Element DistrictCode definieert de CBS-codering\[3\] van de wijk waarin het stembureau zich bevindt. Deze wijkcode begint met de letters ‘WK’ gevolgd door zes karakters: vier voor de gemeentecode en twee voor de wijkcode.
+Element DistrictCode definieert de CBS-codering \[3\] van de wijk waarin het stembureau zich bevindt. Deze wijkcode begint met de letters ‘WK’ gevolgd door zes karakters: vier voor de gemeentecode en twee voor de wijkcode.
 
 Element NeighbourhoodName definieert de naam van de buurt waarin het stembureau zich bevindt.
 
@@ -146,7 +146,7 @@ Complex type AccessibilityPropertiesType bevat de volgende elementen:
 
   - Element GuideLines met als type een restrictie van een string. Geeft aan of er geleidelijnen aanwezig zijn buiten en/of binnen het stembureau voor mensen met een visuele beperking? Toegestane waarden zijn: “inside and outside”, “outside”, “inside” en “not present”.
 
-  - Boolean element VotingTemplate dat aangeeft of er een stemmal met audio-ondersteuning (stembox/soundbox) aanwezig is voor mensen met een visuele beperking of mensen die moeite hebben met lezen\[4\].
+  - Boolean element VotingTemplate dat aangeeft of er een stemmal met audio-ondersteuning (stembox/soundbox) aanwezig is voor mensen met een visuele beperking of mensen die moeite hebben met lezen \[4\].
 
   - Boolean element BrailleCandidateList dat aangeeft of er een kandidatenlijst in braille aanwezig is voor mensen met een visuele beperking.
 
@@ -182,7 +182,7 @@ Het beperkte complex data type EMLstructureKR staat alleen child elements Transa
 
   - kr:Schema (verplicht aanwezig, versie van EML\_NL welke gebruikt is)
 
-  - kr:CreationDateTime (optioneel aanwezig, datetime van wanneer de EML gegenereerd is
+  - kr:CreationDateTime (optioneel aanwezig, datetime van wanneer de EML gegenereerd is)
 
   - ds:CanonicalizationMethod (optioneel maar canonisatie wordt toegepast voorafgaand aan de berekening van de hash code en het schrijven van het EML bestand, dus in werkelijkheid zou het altijd aanwezig moeten zijn).
 
@@ -259,3 +259,13 @@ Het beperkte complex data type ContactDetailsStructureKR herdefinieert door bepe
 Het complexe type ReportingUnitIdentifierStructureKR is een restrictie van het basis type ReportingUnitIdentifierStructure, dat het id attribuut verplicht maakt.
 
 ![](../media/image33.png)
+
+---
+
+1.  In het [kiesbesluit d.d. 17-07-2025](https://wetten.overheid.nl/jci1.3:c:BWBR0004632&afdeling=II&hoofdstuk=H&artikel=H_2&z=2023-01-01&g=2023-01-01) bestaat alleen de mogelijkheid voor een \<\<m\>\> of een \<\<v\>\> op de kandidatenlijst. Hoewel de standaard hier extra waarden toestaan, moeten de aanduidingen op de kandidatenlijst alsnog het kiesbesluit volgen.
+
+2.  Zie ook <https://www.amsterdam.nl/stelselpedia/bag-index/handboek-inwinnen/introductie-bag/registratie/gebruiksdoel/>
+
+3.  <https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/informatie-voor-gemeenten/codering-gebieden>
+
+4.  Voor meer informatie, zie: <https://www.oogvereniging.nl/leven-met/stemmen-met-een-oogaandoening/#stemmal>, <https://stemmal.nl/> en <https://www.stembox.nl/>.

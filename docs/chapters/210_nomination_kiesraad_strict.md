@@ -47,7 +47,7 @@ Het element Nomination is beperkt compatibel in een aantal manieren vergeleken m
 
 Het type van het child element Affiliation is eerst beperkt tot AffiliationStructure210, en daarna uitgebreid op dezelfde manier as in de originele EML V5.0 definitie door een opeenvolging van Candidate elementen. Het type van het child element Candidate is beperkt tot CandidateStructure210. Het child element Nominate is zelf gebonden aan een opeenvolging van child elementen Proposer, waarvan twee gevallen verplicht zijn. De "any" extension point is verwijderd. Het type van het child element Proposer is beperkt tot ProposerStructureKR.
 
-Hieronder staat een voorbeeld van een EML 210 voor het Europees Parlement\[5\]:
+Hieronder staat een voorbeeld van een EML 210 voor het Europees Parlement\[1\]:
 ```xml
 <EML xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:kr="http://www.kiesraad.nl/extensions" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:xnl="urn:oasis:names:tc:ciq:xsdschema:xNL:2.0" Id="210" SchemaVersion="5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TransactionId>1</TransactionId>
@@ -167,3 +167,7 @@ Hieronder staat een voorbeeld van een EML 210 voor het Europees Parlement\[5\]:
   </Nomination>
 </EML>
 ```
+
+---
+
+1.  Persoonsgegevens zijn gefingeerd en afkomstig van <https://www.fakenamegenerator.com/>

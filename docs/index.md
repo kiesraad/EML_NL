@@ -82,15 +82,3 @@ De werkwijze van schema-gebaseerde herdefinitie is niet gebruikt vanwege de slec
 Attributen die niet in de EML\_NL schema’s worden gebruikt, werden niet gewijzigd. Sommige attributen zijn verplicht gemaakt en voor de meest gebruikte attributen werden restricties toegepast op toegestane waarden.
 
 Verplichte elementen met geen duidelijke toepassing voor het Nederlandse verkiezinsgproces zijn onveranderd gebleven, omdat het geen zin had deze te veranderen en verwijdering de EML-compatibiliteit in gevaar zou brengen. Zelfs optionele child elementen binnen deze verplichte elementen zijn niet verwijderd omdat dit weinig toegevoegde waarde zou hebben.
-
----
-
-1.  In het [kiesbesluit d.d. 17-07-2025](https://wetten.overheid.nl/jci1.3:c:BWBR0004632&afdeling=II&hoofdstuk=H&artikel=H_2&z=2023-01-01&g=2023-01-01) bestaat alleen de mogelijkheid voor een \<\<m\>\> of een \<\<v\>\> op de kandidatenlijst. Hoewel de standaard hier extra waarden toestaan, moeten de aanduidingen op de kandidatenlijst alsnog het kiesbesluit volgen.
-
-2.  Zie ook <https://www.amsterdam.nl/stelselpedia/bag-index/handboek-inwinnen/introductie-bag/registratie/gebruiksdoel/>
-
-3.  <https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/informatie-voor-gemeenten/codering-gebieden>
-
-4.  Voor meer informatie, zie: <https://www.oogvereniging.nl/leven-met/stemmen-met-een-oogaandoening/#stemmal>, <https://stemmal.nl/> en <https://www.stembox.nl/>.
-
-5.  Persoonsgegevens zijn gefingeerd en afkomstig van <https://www.fakenamegenerator.com/>
