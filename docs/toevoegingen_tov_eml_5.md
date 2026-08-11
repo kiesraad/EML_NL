@@ -104,7 +104,7 @@ Element Number definieert het huisnummer van het adres waar het stembureau zich 
 
 Element Letter definieert een eventuele huisletter van het adres waar het stembureau zich bevindt.
 
-![](../media/image15.png)
+![](./media/image15.png)
 
 Element NumberAddition definieert een eventuele huisnummertoevoeging van het adres waar het stembureau zich bevindt.
 
@@ -186,79 +186,79 @@ Het beperkte complex data type EMLstructureKR staat alleen child elements Transa
 
   - ds:CanonicalizationMethod (optioneel maar canonisatie wordt toegepast voorafgaand aan de berekening van de hash code en het schrijven van het EML bestand, dus in werkelijkheid zou het altijd aanwezig moeten zijn).
 
-![](../media/image16.png)
+![](./media/image16.png)
 
 Het beperkte complex data type ManagingAuthorityStructureKR staat alleen child elementen AuthorityIdentifier, AuthorityAddress, en kr:CreatedByAuthority toe. Laatstgenoemde werd toegevoegd door gebruik van het "any" extensie punt. Het is optioneel. Het child element AuthorityIdentifier gebruikt de afgeleide AutorityIdentifierStructureKR als type.
 
 Het child element AuthorityAddress wordt eigenlijk niet gebuikt maar is verplicht in het originele type zodat het niet kan worden verwijderd.
 
-![15\_ManagingAuthorityStructureKR](../media/image17.png)
+![15\_ManagingAuthorityStructureKR](./media/image17.png)
 
 Het beperkte complex data type AuthorityIdentifierStructureKR beperkt het data type van zijn Id attribuut naar kr:XSBType.
 
-![16\_AuthorityIdentifierStructureKR](../media/image18.png)
+![16\_AuthorityIdentifierStructureKR](./media/image18.png)
 
 Het beperkte complex data type ElectionIdentifierStructureKR staat alleen child elementen ElectionName, ElectionCategory, kr:ElectionSubcategory, kr:ElectionDomain, kr:ElectionDate, en kr:NominationDate toe. De laatste vier elementen zijn toegevoegd met gebruik van het "any" extension point. Het child element ElectionName is optioneel.
 
 De child elements kr:ElectionSubcategory, kr:ElectionDomain en kr:NominationDate zijn ook optioneel omdat ze niet in alle berichtformaten worden gebruikt. Het element kr:ElectionDate komt verplicht voor.
 
-![](../media/image19.png)
+![](./media/image19.png)
 
 Het beperkte complex data type ContestIdentifierStructureKR maakt zijn Id attribuut verplicht en begrenst het data type van laatstgenoemde aan kr:ContestIdType.
 
-![18\_ContestIdentifierStructureKR](../media/image20.png)
+![18\_ContestIdentifierStructureKR](./media/image20.png)
 
 Het beperkte complex data type CandidateStructureKR herdefinieert het EML type CandidateStructure zonder erfenis door inflexibele restrictie regels. Echter, de nieuwe definitie is nog steeds een wettelijke restrictie van de oude definitie. Het staat alleen child elementen CandidateIdentifier, CandidateFullName, DateOfBirth, Gender of kr:GenderAnnex, QualifyingAddress, Contact, Agent, kr:DateOfBirthAnnex en kr:NationalIdentificationNumber toe. Het type van het child element CandidateIdentifier is beperkt tot CandidateIdentifierStructureKR. Het type van het child element QualifyingAddress is beperkt tot QualifyingAddressStructureKR. Het type van het child element Affiliation is beperkt tot AffiliationStructureKR. Het type van het child element Agent is beperkt tot AgentStructureKR.
 
-![](../media/image21.png)
+![](./media/image21.png)
 
 Het beperkte complex data type CandidateIdentifierStructureKR staat alleen child element ShortCode toe, en beperkt het type van de ShortCode attributen evenals het type van het child element ShortCode tot NameShortCodeType.
 
-![20\_CandidateIdentifierStructureKR](../media/image22.png)
+![20\_CandidateIdentifierStructureKR](./media/image22.png)
 
 Het beperkte complex data type AddressStructureRestrictedKR is noodzakelijk doordat het schema restrictie mechanisme zelf gebreken kent. Het haalt het basis type uit elkaar naar alleen de attributen.
 
-![21\_AddressStructureRestrictedKR](../media/image23.png)
+![21\_AddressStructureRestrictedKR](./media/image23.png)
 
 Het complexe type GenericQualifyingAddressStructureKR is een uitbreiding op het basis type AddressStructureRestrictedKR.
 
-![](../media/image24.png)
+![](./media/image24.png)
 
 De uitgebreide complex data type QualifyingAddressStructureKR gebruikt het base type AddressStructureRestrictedKR om handmatig een effectieve restrictie te bepalen van de xal:AddressDetails base type.
 
 Het staat als het child element exact één van de (eerder verwijderd) xal:Locality en xal:Country toe.
 
-![](../media/image25.png)
+![](./media/image25.png)
 
 Het complexe type MinimalQualifyingAddressStructureKR is een beperking van het basis type GenericQualifyingAddressStructureKR.
 
-![](../media/image26.png)
+![](./media/image26.png)
 
 Het complexe type GenericMailingAddressStructureKR is een uitbreiding van het basis type AddressStructureRestrictedKR.
 
-![](../media/image27.png)
+![](./media/image27.png)
 
 Het beperkte complex data type MailingAddressStructureKR gebruikt GenericMailingAddressStructureKR als base type. Het staat alleen een xal:GenericAddressGroup toe als child element.
 
-![](../media/image28.png)
+![](./media/image28.png)
 
 Het beperkte complex data type AffiliationStructureKR staat alleen child elements AffiliationIdentifier, Type, en de additionele kr:ListData toe (die het "any" extensie punt gebruikt). Een extra syntactische constructie was nodig om het gebruik van formulieren generator extensies intern nog mogelijk te maken. Het child element AffiliationIdentifier is beperkt tot het type AffiliationIdentifierStructureKR, het child element Type is beperkt tot the simple type kr:AffiliationType.
 
-![24\_AffiliationStructureKR](../media/image29.png)
+![24\_AffiliationStructureKR](./media/image29.png)
 
 Het beperkte complex data type AffiliationIdentifierStructureKR beperkt zijn Id attribuut kr:AffiliationIdType.
 
-![25\_AffiliationIdentifierStructureKR](../media/image30.png)
+![25\_AffiliationIdentifierStructureKR](./media/image30.png)
 
 Het beperkte complex data type ContactDetailsStructureKR herdefinieert door beperkingen in XML-schema het element in plaats van een beperking op ContactDetailsStructure te zijn. Echter, de nieuwe definitie is nog steeds een wettelijke restrictie van de oude definitie. Het staat alleen child element MailingAddress toe als verplicht element.
 
-![](../media/image31.png)
+![](./media/image31.png)
 
-![](../media/image32.png)Het beperkte complex data type AgentStructureKR herdefinieert door beperkingen in XML-schema het element in plaats van een beperking op AgentStructure te zijn. Echter, de nieuwe definitie is nog steeds een wettelijke restrictie van de oude definitie. Het staat alleen child elementen AgentIdentifier, en Contact toe en voegt kr:LivingAddress toe. Contact is optioneel.
+![](./media/image32.png)Het beperkte complex data type AgentStructureKR herdefinieert door beperkingen in XML-schema het element in plaats van een beperking op AgentStructure te zijn. Echter, de nieuwe definitie is nog steeds een wettelijke restrictie van de oude definitie. Het staat alleen child elementen AgentIdentifier, en Contact toe en voegt kr:LivingAddress toe. Contact is optioneel.
 
 Het complexe type ReportingUnitIdentifierStructureKR is een restrictie van het basis type ReportingUnitIdentifierStructure, dat het id attribuut verplicht maakt.
 
-![](../media/image33.png)
+![](./media/image33.png)
 
 ---
 

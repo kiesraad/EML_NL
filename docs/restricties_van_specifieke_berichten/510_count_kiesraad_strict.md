@@ -1,6 +1,3 @@
-
-## 510-count-kiesraad-strict.xsd
-
 Het beperkte complex data type EMLstructure510 gebruikt het type EMLstructureKR als base type, en maakt de elementen ManagingAuthority en kr:CreationDateTime verplicht. Child element IssueDate is niet toegestaan.
 
 ![](../media/image61.png)

@@ -1,0 +1,10 @@
+[project]
+site_name = "EML_NL"
+repo_url = "https://github.com/kiesraad/EML_NL"
+repo_name = "EML_NL"
+
+[project.theme]
+language = "nl"
+font.text = "DM Sans"
+logo = "media/logo.svg"
+favicon = "media/logo.svg"

@@ -1,6 +1,3 @@
-
-## 630-optionslist-kiesraad-strict.xsd
-
 Het beperkte complex data type EMLstructure630 gebruikt het type EMLstructureKR als base type, en maakt kr:CreationDateTime verplicht.
 
 ![](../media/image78.png)

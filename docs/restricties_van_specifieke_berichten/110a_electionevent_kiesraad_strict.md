@@ -1,6 +1,3 @@
-
-## 110a-electionevent-kiesraad-strict.xsd
-
 Het beperkte complex data type EMLstructure110 gebruikt het type EMLstructureKR als base type en maakt child element kr:CreationDateTime verplicht.
 
 ![](../media/image34.png)

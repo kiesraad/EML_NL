@@ -1,6 +1,3 @@
-
-## 110b-electionevent-kiesraad-strict.xsd
-
 Het beperkte complex data type EMLstructure110 gebruikt het type EMLstructureKR als base type en maakt child elementen ManagingAuthority en kr:CreationDateTime verplicht. **LET OP:** hoewel dit type een naam deelt met het type uit de 110a zijn er dus wel verschillen\!
 
 ![](../media/image40.png)

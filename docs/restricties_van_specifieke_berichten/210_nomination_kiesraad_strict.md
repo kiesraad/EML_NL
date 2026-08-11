@@ -1,6 +1,3 @@
-
-## 210-nomination-kiesraad-strict.xsd
-
 Het beperkte complex data type EMLstructure210 gebruikt het type EMLstructureKR als base type en maakt child elementen IssueDate en kr:CreationDateTime verplicht.
 
 ![](../media/image46.png)
