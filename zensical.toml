@@ -2,6 +2,7 @@
 site_name = "EML_NL"
 repo_url = "https://github.com/kiesraad/EML_NL"
 repo_name = "EML_NL"
+site_url = "https://kiesraad.github.io/EML_NL/"
 
 [project.theme]
 language = "nl"
