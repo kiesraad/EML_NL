@@ -184,7 +184,7 @@ Het beperkte complex data type `EMLstructureKR` staat alleen child elements `Tra
 
   - `kr:CreationDateTime` (optioneel aanwezig, datetime van wanneer de EML gegenereerd is)
 
-  - `ds:CanonicalizationMethod` (optioneel maar canonisatie wordt toegepast voorafgaand aan de berekening van de hash code en het schrijven van het EML bestand, dus in werkelijkheid zou het altijd aanwezig moeten zijn).
+  - `ds:CanonicalizationMethod` (optioneel, canonisatie wordt door OSV2020 toegepast).
 
 ![](./media/image16.png)
 
