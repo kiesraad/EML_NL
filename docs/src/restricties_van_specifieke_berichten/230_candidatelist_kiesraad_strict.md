@@ -1,3 +1,5 @@
+# 230_candidatelist_kiesraad_strict
+
 Het beperkte complex data type `EMLstructure230` gebruikt het type `EMLstructureKR` als base type, en maakt child elementen `ManagingAuthority`, `IssueDate` en `kr:CreationDateTime` verplicht.
 
 ![](../media/image57.png)

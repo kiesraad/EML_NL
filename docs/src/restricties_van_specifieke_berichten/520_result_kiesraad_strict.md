@@ -1,3 +1,5 @@
+# 520_result_kiesraad_strict
+
 Het beperkte complex data type `EMLstructure520` gebruikt het type `EMLstructureKR` als base type, en maakt child elementen `ManagingAuthority` en `kr:CreationDateTime` verplicht. Het child element `IssueDate` is niet toegestaan.
 
 ![](../media/image71.png)
