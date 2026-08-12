@@ -180,11 +180,11 @@ In tegenstelling tot andere simple types, is het beperkte simple date type `Name
 
 Het beperkte complex data type `EMLstructureKR` staat alleen child elements `TransactionId`, `ManagingAuthority`, `IssueDate`, en de drie elementen `kr:Schema`, `kr:CreationDateTime` en `ds:CanonicalizationMethod` toe. Laatstgenoemde drie elementen werden toegevoegd door gebruik van het "any" extensie punt. De constructie met 1 tot 3 choices is noodzakelijk om te voldoen aan de eisen van restricties in XML-schemas. Hierdoor valideren EML bestanden welke deze elementen niet bevatten ook. De formele specificatie in dit document is echter leidend. Deze drie elementen zijn:
 
-  - `kr:Schema` (verplicht aanwezig, versie van EML\_NL welke gebruikt is)
+  - `kr:Schema`: verplicht aanwezig, versie van EML\_NL welke gebruikt is
 
-  - `kr:CreationDateTime` (optioneel aanwezig, datetime van wanneer de EML gegenereerd is)
+  - `kr:CreationDateTime`: optioneel aanwezig, datetime van wanneer de EML gegenereerd is
 
-  - `ds:CanonicalizationMethod` (optioneel, canonisatie wordt door OSV2020 toegepast).
+  - `ds:CanonicalizationMethod`: optioneel, moet aanwezig zijn indien canonisatie toegepast wordt. Indien dit element weggelaten wordt dan heeft er geen canonisatie plaatsgevonden.
 
 ![](./media/image16.png)
 
