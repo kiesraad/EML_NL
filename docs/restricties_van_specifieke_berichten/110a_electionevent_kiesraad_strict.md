@@ -1,24 +1,24 @@
-Het beperkte complex data type EMLstructure110 gebruikt het type EMLstructureKR als base type en maakt child element kr:CreationDateTime verplicht.
+Het beperkte complex data type `EMLstructure110` gebruikt het type `EMLstructureKR` als base type en maakt child element `kr:CreationDateTime` verplicht.
 
 ![](../media/image34.png)
 
-Het beperkte complex data type ElectionIdentifierStructure110a gebruikt het type ElectionIdentifierStructureKR als base type en maakt ElectionName, kr:ElectionSubcategory en kr:NominationDate verplicht.
+Het beperkte complex data type `ElectionIdentifierStructure110a` gebruikt het type `ElectionIdentifierStructureKR` als base type en maakt `ElectionName`, `kr:ElectionSubcategory` en `kr:NominationDate` verplicht.
 
 ![](../media/image35.png)
 
-Het beperkte complex data type ContestIdentifierStructure110a gebruikt het type ContestIdentifierStructureKR als base type. Het element ContestName is niet toegestaan.
+Het beperkte complex data type `ContestIdentifierStructure110a` gebruikt het type `ContestIdentifierStructureKR` als base type. Het element `ContestName` is niet toegestaan.
 
 ![](../media/image36.png)
 
-Het complex data type PollingPlaceStructure110 wordt opnieuw gedefinieerd en is in beperkte mate compatibel met het core EML element PollingPlaceStructure. Hoewel dit element in de 110a wordt gedefinieerd wordt deze feitelijk niet in de 110a gebruikt. Uitgebreidere informatie over stembureaus wordt in de 110b uitgevraagd. Het beperkt de attributes tot Channel. Daarnaast is het enige toegestane child element beperkt tot PhysicalLocation. Het Address element is beperkt tot het xal:Address type uit EML\_NL. Daarnaast is het PollingStation element toegevoegd met een verplicht Id attribuut.
+Het complex data type `PollingPlaceStructure110` wordt opnieuw gedefinieerd en is in beperkte mate compatibel met het core EML element `PollingPlaceStructure`. Hoewel dit element in de 110a wordt gedefinieerd wordt deze feitelijk niet in de 110a gebruikt. Uitgebreidere informatie over stembureaus wordt in de 110b uitgevraagd. Het beperkt de attributes tot `Channel`. Daarnaast is het enige toegestane child element beperkt tot `PhysicalLocation`. Het `Address` element is beperkt tot het `xal:Address` type uit EML_NL. Daarnaast is het `PollingStation` element toegevoegd met een verplicht `Id` attribuut.
 
 ![](../media/image37.png)
 
-Het base type van het EML (root) element is beperkt tot EMLstructure110. Daarna is het uitgebreid op dezelfde manier als in de originele EML V5.0 definitie door het child element ElectionEvent.
+Het base type van het EML (root) element is beperkt tot `EMLstructure110`. Daarna is het uitgebreid op dezelfde manier als in de originele EML V5.0 definitie door het child element `ElectionEvent`.
 
 ![](../media/image38.png)
 
-Het element ElectionEvent is beperkt compatibel in een aantal manieren vergeleken met het originele EML element. Het type van het child element ElectionIdentifier is beperkt tot ElectionIdentifierStructure110a. Het type van het child element ContestIdentifier is beperkt tot ContestIdentifierStructure110a. Verder zijn alleen child elementen EventIdentifier en Election toegestaan, welke beiden verplicht zijn. Andere opties zijn niet toegestaan. Het “any" extension point is verwijderd. Verder zijn enkele extra elementen onder de kr namespace toegevoegd om benodigde informatie over Nederlandse verkiezingen te kunnen registreren. Ook wordt de kr:ElectionTree in dit bestand opgenomen om de hiërarchie van de regios welke meedoen aan deze verkiezing te definiëren.
+Het element `ElectionEvent` is beperkt compatibel in een aantal manieren vergeleken met het originele EML element. Het type van het child element `ElectionIdentifier` is beperkt tot `ElectionIdentifierStructure110a`. Het type van het child element `ContestIdentifier` is beperkt tot `ContestIdentifierStructure110a`. Verder zijn alleen child elementen `EventIdentifier` en `Election` toegestaan, welke beiden verplicht zijn. Andere opties zijn niet toegestaan. Het “any" extension point is verwijderd. Verder zijn enkele extra elementen onder de `kr` namespace toegevoegd om benodigde informatie over Nederlandse verkiezingen te kunnen registreren. Ook wordt de `kr:ElectionTree` in dit bestand opgenomen om de hiërarchie van de regios welke meedoen aan deze verkiezing te definiëren.
 
 ![](../media/image39.png)
 

@@ -1,24 +1,26 @@
-Het beperkte complex data type EMLstructure110 gebruikt het type EMLstructureKR als base type en maakt child elementen ManagingAuthority en kr:CreationDateTime verplicht. **LET OP:** hoewel dit type een naam deelt met het type uit de 110a zijn er dus wel verschillen\!
+Het beperkte complex data type `EMLstructure110` gebruikt het type `EMLstructureKR` als base type en maakt child elementen `ManagingAuthority` en `kr:CreationDateTime` verplicht. 
+
+**LET OP:** hoewel dit type een naam deelt met het type uit de 110a zijn er dus wel verschillen!
 
 ![](../media/image40.png)
 
-Het beperkte complex data type ElectionIdentifierStructure110 gebruikt het type ElectionIdentifierStructureKR als base type en staat het element kr:NominationDate niet toe.
+Het beperkte complex data type `ElectionIdentifierStructure110` gebruikt het type `ElectionIdentifierStructureKR` als base type en staat het element `kr:NominationDate` niet toe.
 
 ![](../media/image41.png)
 
-Het beperkte complex data type ContestIdentifierStructure110 gebruikt het type ContestIdentifierStructureKR als base type. Het element ContestName is niet toegestaan.
+Het beperkte complex data type `ContestIdentifierStructure110` gebruikt het type `ContestIdentifierStructureKR` als base type. Het element `ContestName` is niet toegestaan.
 
 ![](../media/image42.png)
 
-Het complex data type PollingPlaceStructure110 wordt opnieuw gedefinieerd en is in beperkte mate compatibel met het core EML element PollingPlaceStructure. Het beperkt de attributes tot Channel. Daarnaast is het enige toegestane child element beperkt tot PhysicalLocation. Het Address element is beperkt tot een lokaal type waar exact één keer een Locality voor moet komen welke beperkt is tot het type xal:LocalityType110 en optioneel een onbeperkt aantal sb:Location elementen met daarin extra informatie over het stembureau. Indien het een mobiel stembureau betreft dan kunnen er meerdere sb:Location elementen gedefinieerd worden. Daarnaast zijn de volgende elementen toegevoegd: PollingStation met een verplicht Id attribuut en de elementen kr:ReportingUnitType en kr:SharedLocation.
+Het complex data type `PollingPlaceStructure110` wordt opnieuw gedefinieerd en is in beperkte mate compatibel met het core EML element `PollingPlaceStructure`. Het beperkt de attributes tot `Channel`. Daarnaast is het enige toegestane child element beperkt tot `PhysicalLocation`. Het `Address` element is beperkt tot een lokaal type waar exact één keer een `Locality` voor moet komen welke beperkt is tot het type `xal:LocalityType110` en optioneel een onbeperkt aantal `sb:Location` elementen met daarin extra informatie over het stembureau. Indien het een mobiel stembureau betreft dan kunnen er meerdere `sb:Location` elementen gedefinieerd worden. Daarnaast zijn de volgende elementen toegevoegd: `PollingStation` met een verplicht `Id` attribuut en de elementen `kr:ReportingUnitType` en `kr:SharedLocation`.
 
 ![](../media/image43.png)
 
-Het base type van het EML (root) element is beperkt tot EMLstructure110. Daarna is het uitgebreid op dezelfde manier als in de originele EML V5.0 definitie door het child element ElectionEvent.
+Het base type van het EML (root) element is beperkt tot `EMLstructure110`. Daarna is het uitgebreid op dezelfde manier als in de originele EML V5.0 definitie door het child element `ElectionEvent`.
 
 ![](../media/image44.png)
 
-Het element ElectionEvent is beperkt compatibel in een aantal manieren vergeleken met het originele EML element. Het type van het child element ElectionIdentifier is beperkt tot ElectionIdentifierStructure110. Het type van het child element ContestIdentifier is beperkt tot ContestIdentifierStructure110. Verder zijn alleen child elementen EventIdentifier en Election toegestaan, welke beiden verplicht zijn. Er kunnen 1 of meerdere Election elementen voorkomen. Andere opties zijn niet toegestaan. Het “any" extension point is verwijderd. Onder het Contest element zijn alleen de elementen ContestIdentifier, ReportingUnit (de naam en code van de gemeente), VotingMethod (welk in de praktijk leeg gelaten wordt) en MaxVotes met het aantal kiesgerechtigden toegestaan welke verplicht zijn. Optioneel gezien kunnen de contactgegevens en de website van de gemeente toegevoegd worden met de elementen sb:MunicipalityContactDetails en sb:MunicipalityElectionSite. Als laatste komt verplicht minimaal één PollingPlace element voor, waarvan het type beperkt is tot PollingPlaceStructure110
+Het element `ElectionEvent` is beperkt compatibel in een aantal manieren vergeleken met het originele EML element. Het type van het child element `ElectionIdentifier` is beperkt tot `ElectionIdentifierStructure110`. Het type van het child element `ContestIdentifier` is beperkt tot `ContestIdentifierStructure110`. Verder zijn alleen child elementen `EventIdentifier` en `Election` toegestaan, welke beiden verplicht zijn. Er kunnen 1 of meerdere `Election` elementen voorkomen. Andere opties zijn niet toegestaan. Het “any" extension point is verwijderd. Onder het `Contest` element zijn alleen de elementen `ContestIdentifier`, `ReportingUnit` (de naam en code van de gemeente), `VotingMethod` (welk in de praktijk leeg gelaten wordt) en `MaxVotes` met het aantal kiesgerechtigden toegestaan welke verplicht zijn. Optioneel gezien kunnen de contactgegevens en de website van de gemeente toegevoegd worden met de elementen `sb:MunicipalityContactDetails` en `sb:MunicipalityElectionSite`. Als laatste komt verplicht minimaal één `PollingPlace` element voor, waarvan het type beperkt is tot `PollingPlaceStructure110`
 
 ![](../media/image45.png)
 

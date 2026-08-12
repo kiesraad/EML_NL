@@ -1,22 +1,22 @@
-Het beperkte complex data type EMLstructure230 gebruikt het type EMLstructureKR als base type, en maakt child elementen ManagingAuthority, IssueDate en kr:CreationDateTime verplicht.
+Het beperkte complex data type `EMLstructure230` gebruikt het type `EMLstructureKR` als base type, en maakt child elementen `ManagingAuthority`, `IssueDate` en `kr:CreationDateTime` verplicht.
 
 ![](../media/image57.png)
 
-Het beperkte complex data type ElectionIdentifierStructure230 gebruikt het type ElectionIdentifierStructureKR als base type, en maakt het child element kr:NominationDate verplicht.
+Het beperkte complex data type `ElectionIdentifierStructure230` gebruikt het type `ElectionIdentifierStructureKR` als base type, en maakt het child element `kr:NominationDate` verplicht.
 
 ![](../media/image58.png)
 
-Het base type van het EML (root) element is beperkt tot EMLstructure230. Daarna is het uitgebreid op dezelfde manier als in de originele EML V5.0 definitie door het child element CandidateList.
+Het base type van het EML (root) element is beperkt tot `EMLstructure230`. Daarna is het uitgebreid op dezelfde manier als in de originele EML V5.0 definitie door het child element `CandidateList`.
 
 ![](../media/image59.png)
 
-Het element CandidateList is beperkt compatibel in een aantal opzichten in vergelijking tot het originele EML element. Alleen child elementen ListDate en Election zijn toegestaan. Het maximale aantal kardinale getallen Election is teruggebracht naar één. De "any" extension point wordt gehandhaafd.
+Het element `CandidateList` is beperkt compatibel in een aantal opzichten in vergelijking tot het originele EML element. Alleen child elementen `ListDate` en `Election` zijn toegestaan. Het maximale aantal kardinale getallen `Election` is teruggebracht naar één. De "any" extension point wordt gehandhaafd.
 
 ![](../media/image60.png)
 
-Het child element Election is ook beperkt compatibel. Het type van het child element ElectionIdentifier is beperkt tot ElectionIdentifierStructure230. Het ander child element is Contest. Het child element van het type ContestIdentifier is beperkt tot ContestIdentifierStructureKR. Verder is het andere toegestane child element van Contest een opeenvolging van het verplichte element Affiliation. Andere opties zijn niet toegestaan. De "any" extension point wordt behouden. Het type van het child element Affiliation is eerst beperkt tot AffiliationStructureKR, en daarna uitgebreid als op dezelfde manier als in de originele EML V5.0 definitie door een opeenvolging van Candidate elementen. Het type child element Candidate is beperkt tot CandidateStructureKR.
+Het child element `Election` is ook beperkt compatibel. Het type van het child element `ElectionIdentifier` is beperkt tot `ElectionIdentifierStructure230`. Het ander child element is `Contest`. Het child element van het type `ContestIdentifier` is beperkt tot `ContestIdentifierStructureKR`. Verder is het andere toegestane child element van `Contest` een opeenvolging van het verplichte element `Affiliation`. Andere opties zijn niet toegestaan. De "any" extension point wordt behouden. Het type van het child element `Affiliation` is eerst beperkt tot `AffiliationStructureKR`, en daarna uitgebreid als op dezelfde manier als in de originele EML V5.0 definitie door een opeenvolging van `Candidate` elementen. Het type child element `Candidate` is beperkt tot `CandidateStructureKR`.
 
-Een voorbeeld van EML\_NL 230b voor de Tweede Kamerverkiezingen voor een specifieke kieskring wordt hieronder getoond:
+Een voorbeeld van EML_NL 230b voor de Tweede Kamerverkiezingen voor een specifieke kieskring wordt hieronder getoond:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
