@@ -6,6 +6,5 @@ site_url = "https://kiesraad.github.io/EML_NL/"
 
 [project.theme]
 language = "nl"
-font.text = "DM Sans"
 logo = "media/logo.svg"
 favicon = "media/logo.svg"
