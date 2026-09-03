@@ -179,20 +179,20 @@
 							<xs:element name="AffiliationIdentifier" type="AffiliationIdentifierStructure510"/>
 							<xs:element ref="ReferendumOptionIdentifier"/>
 						</xs:choice>
-						<xs:element ref="kr:InitialValidVotes" minOccurs="0" maxOccurs="1"/>
+						<xs:element ref="kr:PreviousValidVotes" minOccurs="0" maxOccurs="1"/>
 						<xs:element name="ValidVotes" type="xs:nonNegativeInteger"/>
 					</xs:sequence>
 					<xs:attribute name="Value" type="VotingValueType" use="optional"/>
 					<xs:attribute name="Category" type="xs:token" use="optional"/>
 				</xs:complexType>
 			</xs:element>
-			<xs:element ref="kr:InitialCast" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="kr:PreviousCast" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="Cast" type="xs:nonNegativeInteger"/>
-			<xs:element ref="kr:InitialTotalCounted" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="kr:PreviousTotalCounted" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="TotalCounted" type="xs:nonNegativeInteger"/>
-			<xs:element ref="kr:InitialRejectedVotes" minOccurs="0" maxOccurs="2"/>
+			<xs:element ref="kr:PreviousRejectedVotes" minOccurs="0" maxOccurs="2"/>
 			<xs:element name="RejectedVotes" minOccurs="2" maxOccurs="2" type="kr:RejectedVotesType"/>
-			<xs:element ref="kr:InitialUncountedVotes" minOccurs="0" maxOccurs="14"/>
+			<xs:element ref="kr:PreviousUncountedVotes" minOccurs="0" maxOccurs="14"/>
 			<xs:element name="UncountedVotes" minOccurs="0" maxOccurs="14" type="kr:UncountedVotesType"/>
 		</xs:sequence>
 	</xs:group>

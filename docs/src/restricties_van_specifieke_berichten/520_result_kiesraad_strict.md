@@ -45,7 +45,7 @@ Een voorbeeld van de EML_NL 520 voor een Tweede Kamerverkiezing is hieronder afg
     <AuthorityIdentifier Id="CSB">De Kiesraad</AuthorityIdentifier>
     <AuthorityAddress/>
   </ManagingAuthority>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2023-12-03T14:22:26.741</kr:CreationDateTime>
   <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
   <Result>

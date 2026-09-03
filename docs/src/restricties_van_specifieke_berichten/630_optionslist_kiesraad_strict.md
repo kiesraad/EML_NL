@@ -33,7 +33,7 @@ Een voorbeeld van de EML\_NL 630 is hieronder weergegeven. De `Ids` die hier als
 ```xml
 <EML SchemaVersion="5" Id="630" xmlns="urn:oasis:names:tc:evs:schema:eml" xmlns:kr="http://www.kiesraad.nl/extensions">
   <TransactionId>1</TransactionId>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2018-01-15T12:35:10.328</kr:CreationDateTime>
   <OptionsList>
     <Election>

@@ -33,7 +33,7 @@ Een voorbeeld van EML_NL 230b voor de Tweede Kamerverkiezingen voor een specifie
     <AuthorityAddress/>
   </ManagingAuthority>
   <IssueDate>2025-01-20</IssueDate>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2025-01-20T10:35:51.604</kr:CreationDateTime>
   <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
   <CandidateList>
