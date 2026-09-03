@@ -57,7 +57,7 @@ Een voorbeeld van de EML\_NL 510b voor de Tweede Kamerverkiezing is hieronder we
     <AuthorityIdentifier Id="0312">Bunnik</AuthorityIdentifier>
     <AuthorityAddress/>
   </ManagingAuthority>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2023-11-23T18:19:30.837</kr:CreationDateTime>
   <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
   <Count>
@@ -157,7 +157,7 @@ Aangezien de 510d een aggregatie tot een niveau *boven* de kieskringen kan zijn,
     <AuthorityIdentifier Id="CSB">De Kiesraad</AuthorityIdentifier>
     <AuthorityAddress/>
   </ManagingAuthority>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2023-12-03T14:20:55.204</kr:CreationDateTime>
   <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
   <Count>
