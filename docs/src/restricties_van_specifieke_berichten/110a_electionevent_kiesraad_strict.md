@@ -34,7 +34,7 @@ Een voorbeeld van een EML 110a voor de Europees Parlementsverkiezing wordt hiero
   xmlns:kr="http://www.kiesraad.nl/extensions" Id="110a" SchemaVersion="5">
   <TransactionId>1</TransactionId>
   <IssueDate>2024-04-29</IssueDate>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2024-04-29T18:13:50.148</kr:CreationDateTime>
   <ElectionEvent>
     <EventIdentifier/>

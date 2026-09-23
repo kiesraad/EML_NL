@@ -44,7 +44,7 @@ Het element `ReportingUnitVotes` is uitgebreid ten opzichte van het originele EM
 
 Het type van child element `ReportingUnitIdentifier` is beperkt tot `ReportingUnitIdentifierStructure510`. De descendant `VoteGroup` was beperkt tot alleen de onbeperkte opvolging van het child element `Selection`, het child element `Cast`, het child element `TotalCounted`, en een opeenvolging van twee van de child elementen `RejectedVotes`, allen verplicht. Daarnaast zijn 0 tot 14 optionele elementen `UncountedVotes` toegevoegd. De child elementen van `Selection` kan één van de `Candidate`, `AffiliationIdentifier`, of `ReferendumOptionIdentifier` zijn, alsmede het element `ValidVotes`. Het type van het element `Candidate` is beperkt tot `CandidateStructure510`. Het type van het element `AffiliationIdentifier` is beperkt tot `AffiliationIdentifierStructure510`. Het element `RejectedVotes` kan alleen de waarden `blanco` en `ongeldig` hebben voor het attribuut `ReasonCode`.
 
-Daarnaast is voor alle elementen welke een aantal beschrijven onder de `kr` namespace een element toegevoegd met prefix `Initial`. Deze elementen komen altijd voor de aantallen die voor het huidige EML bericht gelden en geven de initiële waarde van deze aantallen aan voordat er een corrigendum en dus een nieuw EML bericht is opgemaakt. Deze elementen mogen alleen voorkomen indien `kr:Phase` onder `Count` attribuut `Phasecode="corrigendum"` heeft en het initiële aantal anders was dan het aantal na het corrigendum.
+Daarnaast is voor alle elementen welke een aantal beschrijven onder de `kr` namespace een element toegevoegd met prefix `Previous`. Deze elementen komen altijd voor de aantallen die voor het huidige EML bericht gelden en geven de vorige waarde van deze aantallen aan voordat er een corrigendum en dus een nieuw EML bericht is opgemaakt. Deze elementen mogen alleen voorkomen indien `kr:Phase` onder `Count` attribuut `Phasecode="corrigendum"` heeft en het vorige aantal anders was dan het aantal na het corrigendum (en dit aantal dus is gecorrigeerd).
 
 ![](../media/image70.png)
 
@@ -57,7 +57,7 @@ Een voorbeeld van de EML\_NL 510b voor de Tweede Kamerverkiezing is hieronder we
     <AuthorityIdentifier Id="0312">Bunnik</AuthorityIdentifier>
     <AuthorityAddress/>
   </ManagingAuthority>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2023-11-23T18:19:30.837</kr:CreationDateTime>
   <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
   <Count>
@@ -81,7 +81,7 @@ Een voorbeeld van de EML\_NL 510b voor de Tweede Kamerverkiezing is hieronder we
               <AffiliationIdentifier Id="1">
                 <RegisteredName>De Partij</RegisteredName>
               </AffiliationIdentifier>
-              <kr:InitialValidVotes>1887</kr:InitialValidVotes>
+              <kr:PreviousValidVotes>1887</kr:PreviousValidVotes>
               <ValidVotes>1886</ValidVotes>
             </Selection>
             <Selection>
@@ -92,12 +92,12 @@ Een voorbeeld van de EML\_NL 510b voor de Tweede Kamerverkiezing is hieronder we
             </Selection>
             ...
             <Cast>12124</Cast>
-            <kr:InitialTotalCounted>10704</kr:InitialTotalCounted>
+            <kr:PreviousTotalCounted>10704</kr:PreviousTotalCounted>
             <TotalCounted>10702</TotalCounted>
-            <kr:InitialRejectedVotes ReasonCode="ongeldig">20</kr:InitialRejectedVotes>
+            <kr:PreviousRejectedVotes ReasonCode="ongeldig">20</kr:PreviousRejectedVotes>
             <RejectedVotes ReasonCode="ongeldig">19</RejectedVotes>
             <RejectedVotes ReasonCode="blanco">20</RejectedVotes>
-            <kr:InitialUncountedVotes ReasonCode="andere verklaring">1</kr:InitialUncountedVotes>
+            <kr:PreviousUncountedVotes ReasonCode="andere verklaring">1</kr:PreviousUncountedVotes>
             <UncountedVotes ReasonCode="geldige stempassen">9799</UncountedVotes>
             <UncountedVotes ReasonCode="geldige volmachtbewijzen">922</UncountedVotes>
             <UncountedVotes ReasonCode="geldige kiezerspassen">24</UncountedVotes>
@@ -157,7 +157,7 @@ Aangezien de 510d een aggregatie tot een niveau *boven* de kieskringen kan zijn,
     <AuthorityIdentifier Id="CSB">De Kiesraad</AuthorityIdentifier>
     <AuthorityAddress/>
   </ManagingAuthority>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2023-12-03T14:20:55.204</kr:CreationDateTime>
   <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
   <Count>

@@ -355,19 +355,19 @@
 			<xs:documentation>Electoral quota in % a candidate will be prefered</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="InitialValidVotes" type="xs:nonNegativeInteger">
+	<xs:element name="PreviousValidVotes" type="xs:nonNegativeInteger">
 		<xs:annotation>
-			<xs:documentation>The initial votecount for a candidate or party which has been corrected. Should only appear for changed values of ValidVotes in correction files</xs:documentation>
+			<xs:documentation>The previous votecount for a candidate or party which has been corrected. Should only appear for changed values of ValidVotes in correction files</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="InitialCast" type="xs:nonNegativeInteger">
+	<xs:element name="PreviousCast" type="xs:nonNegativeInteger">
 		<xs:annotation>
-			<xs:documentation>The initial 'cast' element which has been corrected. Should only appear for changed values of 'cast' in correction files</xs:documentation>
+			<xs:documentation>The previous 'cast' element which has been corrected. Should only appear for changed values of 'cast' in correction files</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="InitialTotalCounted" type="xs:nonNegativeInteger">
+	<xs:element name="PreviousTotalCounted" type="xs:nonNegativeInteger">
 		<xs:annotation>
-			<xs:documentation>The initial total amount of counted valid votes. Should only appear for changed values of TotalCounted in correction files</xs:documentation>
+			<xs:documentation>The previous total amount of counted valid votes. Should only appear for changed values of TotalCounted in correction files</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="RejectedVotesType">
@@ -386,9 +386,9 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<xs:element name="InitialRejectedVotes" type="RejectedVotesType">
+	<xs:element name="PreviousRejectedVotes" type="RejectedVotesType">
 		<xs:annotation>
-			<xs:documentation>The initial RejectedVotes for a reporting unit or main unit which has been corrected. Should only appear for changed values in correction files</xs:documentation>
+			<xs:documentation>The previous RejectedVotes for a reporting unit or main unit which has been corrected. Should only appear for changed values in correction files</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="UncountedVotesType">
@@ -419,9 +419,9 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<xs:element name="InitialUncountedVotes" type="UncountedVotesType">
+	<xs:element name="PreviousUncountedVotes" type="UncountedVotesType">
 		<xs:annotation>
-			<xs:documentation>The initial Uncountedvotes (metadata) for a reporting unit or main unit which has been corrected. Should only appear for changed values in correction files</xs:documentation>
+			<xs:documentation>The previous Uncountedvotes (metadata) for a reporting unit or main unit which has been corrected. Should only appear for changed values in correction files</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="RegisteredParties">

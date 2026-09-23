@@ -41,7 +41,7 @@ Hieronder staat een voorbeeld van een EML 110b met een mobiel stembureau dat op 
     <AuthorityIdentifier Id="0999">Juinen</AuthorityIdentifier>
     <AuthorityAddress/>
   </ManagingAuthority>
-  <kr:Schema Version="1.3"/>
+  <kr:Schema Version="1.3.1"/>
   <kr:CreationDateTime>2024-05-27T17:05:57</kr:CreationDateTime>
   <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
   <ElectionEvent>
