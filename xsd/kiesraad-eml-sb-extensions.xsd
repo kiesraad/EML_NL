@@ -34,7 +34,7 @@
 
     <xs:simpleType name="RDCoordinate">
         <xs:restriction base="xs:decimal">
-            <xs:pattern value="\d{1,6}(.\d{1,})?"/>
+            <xs:pattern value="\d{1,6}(\.\d{1,})?"/>
         </xs:restriction>
     </xs:simpleType>
 
